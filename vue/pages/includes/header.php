@@ -21,15 +21,7 @@
       </li>
     </ul>
   </nav>
-  <?php
-  if (get_theme() == 'light') {
-    echo '<button id="theme" onclick="changeTheme()">' . '
-                <img src="assets/img/sun.png" width="50" height="50">' . '
-            </button>';
-  } else {
-    echo '<button id="theme" onclick="changeTheme()">' . '
-                <img src="assets/img/moon.png" width="50" height="50">' . '
-            </button>';
-  }
-  ?>
+  <button id="theme" onclick="changeTheme()">
+    <?= '<img src="assets/img/' . get_theme() . '.png" width="15" height="15">' ?>
+  </button>
 </div>
