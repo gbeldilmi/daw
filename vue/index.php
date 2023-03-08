@@ -2,14 +2,12 @@
 require_once('../controller/*/*.php');
 $page_dir = '../vue/pages';
 $page = isset($_GET['p']) ? $_GET['p'] : 'home' ;
-if (isset($page) && $page !== '') {
-  if (file_exists($page_dir . '/' . $page . '.php')) {
-    // Page
-    require_once($page_dir . '/' . $page . '.php');
-  } else {
-    // 404
-    require_once($page_dir . '/404.php');
-  }
+if (file_exists($page_dir . '/' . $page . '.php')) {
+  // Page
+  require_once($page_dir . '/' . $page . '.php');
+} else {
+  // 404
+  require_once($page_dir . '/404.php');
 }
 
 require_once('layout.php');
