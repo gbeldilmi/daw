@@ -1,5 +1,9 @@
 <?php
-require_once('../controller/*/*.php');
+$files = glob( __DIR__ . "../controller/*/*.php");
+
+foreach ($files as $file) {
+    require($file);   
+}
 $page_dir = '../vue/pages';
 $page = isset($_GET['p']) ? $_GET['p'] : 'home' ;
 if (file_exists($page_dir . '/' . $page . '.php')) {
