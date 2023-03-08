@@ -10,7 +10,7 @@
   <?= '<link href="assets/css/' . get_theme() . '.css" rel="stylesheet" />' ?>
   <link href="assets/css/main.css" rel="stylesheet" />
   <!-- SVG favicon -->
-  <link rel="icon" href="assets/img/favicon.svg" />
+  <link rel="icon" href="assets/img/logo.svg" />
 </head>
 
 <body>
