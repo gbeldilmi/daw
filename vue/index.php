@@ -1,17 +1,16 @@
 <?php
+$files = glob(__DIR__ . "../controller/*/*.php");
+foreach ($files as $file) {
+  require_once($file);
+}
 $page_dir = '../vue/pages';
-$page = $_GET['p'];
-if (isset($page) && $page !== '') {
-  if (file_exists($page_dir . '/' . $page . '.php')) {
-    // Page
-    require_once($page_dir . '/' . $page . '.php');
-  } else {
-    // 404
-    require_once($page_dir . '/404.php');
-  }
+$page = isset($_GET['p']) ? $_GET['p'] : 'home';
+if (file_exists($page_dir . '/' . $page . '.php')) {
+  // Page
+  require_once($page_dir . '/' . $page . '.php');
 } else {
-  // Home : default
-  require_once($page_dir . '/home.php');
+  // 404
+  require_once($page_dir . '/404.php');
 }
 
 require_once('layout.php');
