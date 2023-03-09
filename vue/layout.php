@@ -11,7 +11,7 @@ require_once "../controller/color_theme/get_theme.php";
   <?= '<link href="assets/css/' . get_theme() . '.css" rel="stylesheet" />' ?>
   <link href="assets/css/main.css" rel="stylesheet" />
   <!-- SVG favicon -->
-  <link rel="icon" href="assets/img/logo.svg" />
+  <link rel="icon" href="assets/img/favicon.svg" />
 </head>
 
 <body>
@@ -20,7 +20,6 @@ require_once "../controller/color_theme/get_theme.php";
   </header>
   <main>
     <?= $content ?>
-
   </main>
   <footer>
     <?php require_once('pages/includes/footer.php'); ?>
