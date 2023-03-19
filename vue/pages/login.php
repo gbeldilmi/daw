@@ -1,9 +1,12 @@
 <?php
+
+require_once "../controller/user/is_connected.php";
+require_once "../controller/user/is_student.php";
   if (is_connected()) {header('Location: index.php?p=home');}
   $title = "Login";
   ob_start(); ?>
 
-<form id="login" method="post">
+<form id="login" action="../../controller/user/login.php" method="post">
   <h1>Login</h1>
   <label for="l_username">Nom d'utilisateur :</label>
   <input type="text" name="l_username" id="l_username" required placeholder="Nom d'utilisateur">
@@ -14,7 +17,7 @@
 
 <button id="show-register">Créer un nouveau compte</button>
 
-<form id="register" method="post" >
+<form id="register" method="post" action="../../controller/user/create_user.php" >//ajax controllo username valido
   <h1>Register</h1>
   <label for="r_firstname">Prénom :</label>
   <input type="text" name="r_firstname" id="r_firstname" required placeholder="Prénom">
