@@ -27,11 +27,5 @@ require_once "../controller/color_theme/get_theme.php";
 </body>
 <script src='assets/js/jquery.js'></script>
 <script src="assets/js/changetheme.js"></script>
-<?php
-$theme = 'light';
-if (isset($_COOKIE['theme'])) {
-  $theme = $_COOKIE['theme'];
-}
-?>
 
 </html>
