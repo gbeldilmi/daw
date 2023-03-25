@@ -10,26 +10,29 @@ if (empty($_GET['id'])) {
 ob_start();
 ?>
 
-<div>
-  <h1><?php echo $test['title']; ?></h1>
-  <p><?php echo $test['description']; ?></p>
-</div>
+<?php
+    echo "<h1>Test $testId</h1>";
+    echo "<form method='post' action='submit_test.php'>";
+    echo "<input type='hidden' name='test_id' value='$testId'>"; // Soumettre l'ID du test avec le formulaire
+    echo "<ul>";
+    foreach ($test['questions'] as $question) {
+        echo "<li>";
+        echo "<p>" . $question['text'] . "</p>";
+        echo "<ul>";
+        foreach ($question['answers'] as $answer) {
+            echo "<li>";
+            echo "<input type='radio' name='q" . $question['id'] . "' value='" . $answer['id'] . "' required>";
+            echo "<label>" . $answer['text'] . "</label>";
+            echo "</li>";
+        }
+        echo "</ul>";
+        echo "</li>";
+    }
+    echo "</ul>";
+    echo "<button type='submit'>Soumettre</button>";
+    echo "</form>";
+    ?>
 
-<form action="" method="post">
-  <?php foreach ($test['questions'] as $question) { ?>
-    <div>
-      <h3><?php echo $question['question']; ?></h3>
-      <ul>
-        <?php foreach ($question['choices'] as $choice) { ?>
-          <li>
-            <input type="radio" name="answer-<?php echo $question['id']; ?>" id="answer-<?php echo $choice['id']; ?>" value="<?php echo $choice['id']; ?>" <?php if($choice['valid'] == 'true') { echo 'valid="true"'; } ?>>
-            <label for="answer-<?php echo $choice['id']; ?>"><?php echo $choice['choice']; ?></label>
-          </li>
-        <?php } ?>
-      </ul>
-    </div>
-  <?php } ?>
-  <button type="submit">Soumettre</button>
 </form>
 
 
