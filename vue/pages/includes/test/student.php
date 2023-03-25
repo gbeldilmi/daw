@@ -12,7 +12,7 @@ ob_start();
 
 <?php
     echo "<h1>Test $testId</h1>";
-    echo "<form method='post' action='submit_test.php'>";
+    echo "<form method='post' action='test.php'>";
     echo "<input type='hidden' name='test_id' value='$testId'>"; // Soumettre l'ID du test avec le formulaire
     echo "<ul>";
     foreach ($test['questions'] as $question) {
