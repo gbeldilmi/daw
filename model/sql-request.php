@@ -40,7 +40,17 @@ function get_all_roles($role):array{
 function insert_user($firstname, $lastname, $username, $password, $role):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("INSERT INTO USER(FIRSTNAME,LASTNAME,USERNAME,PASSWORD,ROLE,CREATED_AT)VALUES ('$firstname','$lastname','$username',sha2('$password',256),'$role',sysdate())");
+    $query=$db->prepare("INSERT INTO USER(FIRSTNAME,LASTNAME,USERNAME,PASSWORD,ROLE,CREATED_AT) VALUES ('$firstname','$lastname','$username',sha2('$password',256),'$role',sysdate())");
+    $returnq=$query->execute();
+    $conn->closeConnection();
+    return $returnq;
+}
+
+function add_followed_courses($username,$id_course):bool{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("INSERT INTO FOLLOWED_COURSE(user_id, course_id)
+        VALUES ('$username','$id_course')");
     $returnq=$query->execute();
     $conn->closeConnection();
     return $returnq;
