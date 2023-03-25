@@ -5,8 +5,12 @@ $test = get_test($_GET['id']); // récupérer le test depuis la base de données
 
   // Vérifier si l'utilisateur connecté est le propriétaire du cours
   if ($course['owner_id'] !== $user['id']) {
-    header("Location: login.php");
+    header("Location: index.php?p=404");
   }
+  // Vérifier si le test existe
+if (!$test) {
+  header("Location: index.php?p=404");
+}
   ob_start(); ?>
 
  <h2> Edition du test </h2>
@@ -16,7 +20,7 @@ $test = get_test($_GET['id']); // récupérer le test depuis la base de données
     <div>
       <h3><?php echo $question['question']; ?></h3>
       <ul>
-        <?php foreach ($question['choices'] as $choice) { ?>
+        <?php foreach ($question['choices'] as $choice) { ?> <!--pour moi j'ai rajouter un élément à la dtd pour les choix d'une réponse-->
           <li>
             <input type="radio" name="answer-<?php echo $question['id']; ?>" id="answer-<?php echo $choice['id']; ?>" value="<?php echo $choice['id']; ?>">
             <label for="answer-<?php echo $choice['id']; ?>"><?php echo $choice['choice']; ?></label>
