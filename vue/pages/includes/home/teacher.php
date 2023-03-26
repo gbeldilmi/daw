@@ -7,12 +7,22 @@
   <button id="create-course">Créer un nouveau cours</button>
 </div>
 
-<!-- 
-  Bouton Créer un nouveau cours ==> modal
-  TODO: Ajouter les interactions pour afficher le formulaire de création de cours dans un modal
-        s'affichant au clic sur le bouton "Créer un nouveau cours"
--->
+<script>
+  const modal = document.getElementById("modal");
+  const createCourseButton = document.getElementById("create-course");
 
+  createCourseButton.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+</script>
+
+<div id="modal" style="display: none;">
 <form action="" method="post">
   <h1>Créer un nouveau cours</h1>
   <label for="course-name">Nom du cours :</label>
@@ -20,7 +30,7 @@
   <label for="course-desc">Description du cours :</label>
   <textarea name="course-desc" id="course-desc" rows="3" maxlength="65535" placeholder="Description du cours"></textarea>
 </form>
-
+</div>
 
 <?php
   $content = ob_get_contents();
