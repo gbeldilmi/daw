@@ -1,13 +1,15 @@
 <?php
 require_once '../../model/sql-request.php';
 session_start();
-$cookie_name = "logged";
+isset($_COOKIE['logged'])?'':setcookie("logged", '0', time() + (86400 * 30), "/");
+//setcookie("logged", '1', time() + (86400 * 30), "/");
 if (get_login()) {
-    setcookie($cookie_name, true, time() + (86400 * 30), "/");
-} else
+    setcookie("logged", '1', time() + (86400 * 30), "/");
+} else {
+    setcookie("logged", '0', time() + (86400 * 30), "/");
     echo "<script>alert('mot passe ou username bad');</script>";
-
-
+}
+//setcookie("logged", '1', time() + (86400 * 30), "/");
 function get_login(): bool
 {
     $userlogin = $_POST['l_username'];
