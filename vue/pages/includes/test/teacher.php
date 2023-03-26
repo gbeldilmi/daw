@@ -15,7 +15,7 @@ if (!$test) {
 
  <h2> Edition du test </h2>
 
-<form action="" method="post">
+<form action="/../test.php" method="post">
   <?php foreach ($test['questions'] as $question) { ?>
     <div>
       <h3><?php echo $question['question']; ?></h3>
