@@ -1,7 +1,6 @@
-<div>
+ <div>
     <div>
-    <?= '<img src="assets/img/logo' . get_theme() . '.png" width="15" height="15">' ?>
-    <img src="assets/img/logo.svg" alt="" height="20">
+    <img src="assets/img/favicon.svg" alt="" height="20">
     <h4>À propos de nous</h4>
      <p>Nous sommes une entreprise de formation en ligne dédiée à vous fournir des cours de qualité pour améliorer vos compétences professionnelles.</p>
     </div>
