@@ -17,7 +17,7 @@ require_once "../controller/user/is_student.php";
 
 <button id="show-register">Créer un nouveau compte</button>
 
-<form id="register" method="post" action="../../controller/user/create_user.php" >//ajax controllo username valido
+<form id="register" method="post" action="../../controller/user/create_user.php" >
   <h1>Register</h1>
   <label for="r_firstname">Prénom :</label>
   <input type="text" name="r_firstname" id="r_firstname" required placeholder="Prénom">

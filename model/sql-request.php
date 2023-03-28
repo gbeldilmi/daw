@@ -1,7 +1,6 @@
 <?php
 require_once 'ConnectionDb.php';
 function get_user_login():array{
-    /** @var ConnectionDb $conn */
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("select USERNAME,PASSWORD from USER");
@@ -55,23 +54,23 @@ function add_followed_courses($username,$id_course):bool{
     return $returnq;
 }
 
-function course_exists($id_course):bool{
+function course_exists_model($id_course):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("select id FROM course ");
     $query->execute();
     $users=array();
     while ($row = $query->fetch()) {
-      
+
         if($row['id']==$id_course)
-        return true;
+            return true;
     }
     $conn->closeConnection();
     return false;
 
 }
 
-function create_course($name,$description,$path):bool{
+function create_course_model($name,$description,$path):bool{
     $id=get_ID_User($_SESSION['username']);
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -82,20 +81,20 @@ function create_course($name,$description,$path):bool{
 
 }
 
-function get_course($id):array{
+function get_course_model($id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("select ID,NAME,FILE_PATH,DESCRIPTION, AUTHOR_ID from COURSE");
     $query->execute();
     $course=array();
     while ($row = $query->fetch()) {
-        if ( $id == $row['ID']){ 
-        $course['NAME']=$row['NAME'];
-        $course['FILE_PATH']=$row['FILE_PATH'];
-        $course['DESCRIPTION']=$row['DESCRIPTION'];
-        $course['AUTHOR_ID']=$row['AUTHOR_ID'];}
-
+        if ( $id == $row['ID']){
+            $course['NAME']=$row['NAME'];
+            $course['FILE_PATH']=$row['FILE_PATH'];
+            $course['DESCRIPTION']=$row['DESCRIPTION'];
+            $course['AUTHOR_ID']=$row['AUTHOR_ID'];
+        }
     }
     $conn->closeConnection();
-    return $users;
+    return $course;
 }
