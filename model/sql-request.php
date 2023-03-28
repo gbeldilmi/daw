@@ -97,5 +97,5 @@ function get_course($id):array{
 
     }
     $conn->closeConnection();
-    return $users;
+    return $course;
 }
