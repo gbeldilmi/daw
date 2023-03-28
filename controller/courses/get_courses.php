@@ -5,6 +5,6 @@
 session_start();
 require_once '../model/sql-request.php';
 function get_courses($owner_id):array{
-    return get_courses_model($owner_id);
+    return get_courses($owner_id);
  
 } 

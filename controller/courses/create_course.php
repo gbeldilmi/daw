@@ -3,6 +3,6 @@
   session_start();
 require_once '../model/sql-request.php';
 function create_course($name,$description,$path):bool{
-    return create_course_model($name,$description,$path);
+    return create_course($name,$description,$path);
  
 } 
