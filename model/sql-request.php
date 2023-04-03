@@ -59,9 +59,7 @@ function course_exists_model($id_course):bool{
     $db=$conn->database;
     $query=$db->prepare("select id FROM course ");
     $query->execute();
-    $users=array();
     while ($row = $query->fetch()) {
-
         if($row['id']==$id_course)
             return true;
     }
@@ -70,14 +68,20 @@ function course_exists_model($id_course):bool{
 
 }
 
-function create_course_model($name,$description,$path):bool{
+function create_course_model($name,$description):int{
     $id=get_ID_User($_SESSION['username']);
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("INSERT INTO cours(NAME,AUTHOR_ID,FILE_PATH, DESCRIPTION, CREATED_AT ) VALUES ('$name','$id','$path','$description',sysdate()) ");
-    $returnq=$query->execute();
+    $query=$db->prepare("INSERT INTO COURSE(NAME,AUTHOR_ID, DESCRIPTION, CREATED_AT ) VALUES ('$name','$id','$description',sysdate()) ");
+    $idcour=-1;
+    if($query->execute()) {
+        $querys = $db->prepare("SELECT ID FROM COURSE ORDER BY ID DESC LIMIT 1");
+        $querys->execute();
+        $idcour = $querys->fetch()['ID'];
+    }
     $conn->closeConnection();
-    return $returnq;
+
+    return $idcour;
 
 }
 
@@ -97,4 +101,20 @@ function get_course_model($id):array{
     }
     $conn->closeConnection();
     return $course;
+}
+function get_courses_model($id):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select NAME,FILE_PATH,DESCRIPTION from COURSE WHERE AUTHOR_ID=$id");
+    $query->execute();
+    $courses=array();
+    while ($row = $query->fetch()) {
+        $a=array();
+        $a['NAME']=$row['NAME'];
+        $a['FILE_PATH']=$row['FILE_PATH'];
+        $a['DESCRIPTION']=$row['DESCRIPTION'];
+        $courses[]=$a;
+    }
+    $conn->closeConnection();
+    return $courses;
 }

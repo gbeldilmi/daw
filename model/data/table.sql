@@ -14,7 +14,6 @@ CREATE TABLE COURSE (
                         ID INT NOT NULL AUTO_INCREMENT,
                         NAME VARCHAR(255) NOT NULL,
                         AUTHOR_ID INT NOT NULL,
-                        FILE_PATH VARCHAR(255) NOT NULL,
                         DESCRIPTION VARCHAR(1000) NOT NULL,
                         CREATED_AT DATETIME NOT NULL,
                         PRIMARY KEY (ID),
