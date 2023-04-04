@@ -100,6 +100,7 @@ function get_course_model($id):array{
         }
     }
     $conn->closeConnection();
+<<<<<<< Updated upstream
     return $course;
 }
 function get_courses_model($id):array{
@@ -118,3 +119,8 @@ function get_courses_model($id):array{
     $conn->closeConnection();
     return $courses;
 }
+=======
+    return $users;
+}
+
+>>>>>>> Stashed changes
