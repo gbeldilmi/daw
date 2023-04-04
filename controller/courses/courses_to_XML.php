@@ -9,8 +9,6 @@ function course_TO_XML(array $data,$i)
     print_r($data);
     echo $cour->asXML();
 }
-
-
 function array_to_xml($data, &$cour)
 {
     foreach ($data as $key => $value) {
