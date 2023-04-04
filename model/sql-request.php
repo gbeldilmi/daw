@@ -100,7 +100,6 @@ function get_course_model($id):array{
         }
     }
     $conn->closeConnection();
-<<<<<<< Updated upstream
     return $course;
 }
 function get_courses_model($id):array{
@@ -119,8 +118,96 @@ function get_courses_model($id):array{
     $conn->closeConnection();
     return $courses;
 }
-=======
-    return $users;
+function get_followed_courses():array{
+    $id=get_ID_User($_SESSION['username']);
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select COURSE_ID  from FOLLOWED_COURSES WHERE USER_ID=$id ");
+    $query->execute();
+    $courses=array();
+    while ($row = $query->fetch()) {
+       
+        $courses[]=get_course($row['COURSE_ID']);
+    }
+    $conn->closeConnection();
+    return $couses;
 }
 
->>>>>>> Stashed changes
+function get_test($id):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select ID,NAME,COURSE_ID from TEST");
+    $query->execute();
+    $course=array();
+    while ($row = $query->fetch()) {
+        if ( $id == $row['ID']){ 
+      
+        $test['NAME']=$row['NAME'];
+        $test['COURSE_ID']=$row['COURSE_ID'];
+   }
+
+    }
+    $conn->closeConnection();
+    return $test;
+}
+
+function get_tests($course_id):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select NAME from TEST WHERE COURSES_ID=$course_id");
+    $query->execute();
+    $tests=array();
+    while ($row = $query->fetch()) {
+        $tests[]=$row['NAME'];
+    }
+    $conn->closeConnection();
+    return $tests;
+}
+
+function is_course_owner($id_course,$id_user):bool{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select ID,AUTHOR_ID FROM COURSE WHERE ID=$id_course ");
+    $query->execute();
+    $users=array();
+    while ($row = $query->fetch()) {
+      
+        if($row['AUTHOR_ID']==$id_user)
+        return true;
+    }
+    $conn->closeConnection();
+    return false;
+
+}
+
+function is_followed_course($id_user,$id_course):bool{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select COURSE_ID,USER_ID FROM FOLLOWED_COURSE WHERE COURSE_ID=$id_course ");
+    $query->execute();
+    $users=array();
+    while ($row = $query->fetch()) {
+      
+        if($row['USER_ID']==$id_user)
+        return true;
+    }
+    $conn->closeConnection();
+    return false;
+
+}
+
+function is_test_owner($id_test,$id_user):bool{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("select ID,NAME,COURSE_ID from TEST  WHERE ID=$id_user ");
+    $query->execute();
+    $users=array();
+    while ($row = $query->fetch()) {
+      
+        if($row['']==$id_test)
+        return true;
+    }
+    $conn->closeConnection();
+    return false;
+
+}
