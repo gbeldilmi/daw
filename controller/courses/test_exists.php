@@ -2,8 +2,8 @@
 //test_exists(id)
 //check if the test with the given id exists ==> boolean
 session_start();
-  require_once '../../model/sql-request.php';
-  function is_course_owner($id_course,$id_user):bool{
-      return is_course_owner_model($id_course,$id_user);
-
+  require_once '../model/sql-request.php';
+  function test_exists($id):bool{
+      return test_exists($id);
+   
   } 
