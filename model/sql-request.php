@@ -46,7 +46,7 @@ function insert_user($firstname, $lastname, $username, $password, $role):bool{
     return $returnq;
 }
 
-function add_followed_courses($username,$id_course):bool{
+function add_followed_courses_model($username,$id_course):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("INSERT INTO FOLLOWED_COURSE(user_id, course_id) VALUES ('$username','$id_course') ");
@@ -55,7 +55,7 @@ function add_followed_courses($username,$id_course):bool{
     return $returnq;
 }
 
-function course_exists($id_course):bool{
+function course_exists_model($id_course):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("select id FROM COURSE ");
@@ -71,18 +71,17 @@ function course_exists($id_course):bool{
 
 }
 
-function create_course($name,$description,$path):bool{
+function create_course_model($name,$description):bool{
     $id=get_ID_User($_SESSION['username']);
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("INSERT INTO cours(NAME,AUTHOR_ID,FILE_PATH, DESCRIPTION, CREATED_AT ) VALUES ('$name','$id','$path','$description',sysdate()) ");
+    $query=$db->prepare("INSERT INTO COURSE(NAME,AUTHOR_ID, DESCRIPTION, CREATED_AT ) VALUES ('$name','$id','$description',sysdate()) ");
     $returnq=$query->execute();
     $conn->closeConnection();
     return $returnq;
-
 }
 
-function get_course($id):array{
+function get_course_model($id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("select ID,NAME,DESCRIPTION, AUTHOR_ID from COURSE");
@@ -99,10 +98,10 @@ function get_course($id):array{
     return $course;
 }
 
-function get_courses($owner_id):array{
+function get_courses_model($owner_id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("select NAME,DESCRIPTION from COURSE WHERE AUTHOR_ID=$id");
+    $query=$db->prepare("select NAME,DESCRIPTION from COURSE WHERE AUTHOR_ID=$owner_id");
     $query->execute();
     $courses=array();
     while ($row = $query->fetch()) {
@@ -113,13 +112,13 @@ function get_courses($owner_id):array{
         $courses[]=$a;
     }
     $conn->closeConnection();
-    return $couses;
+    return $courses;
 }
 function get_followed_courses_model():array{
     $id=get_ID_User($_SESSION['username']);
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("select COURSE_ID  from FOLLOWED_COURSES WHERE USER_ID=$id ");
+    $query=$db->prepare("select COURSE_ID from FOLLOWED_COURSES WHERE USER_ID=$id ");
     $query->execute();
     $courses=array();
     while ($row = $query->fetch()) {
@@ -136,12 +135,10 @@ function get_test_model($id):array{
     $query->execute();
     $course=array();
     while ($row = $query->fetch()) {
-        if ( $id == $row['ID']){ 
-      
-        $test['NAME']=$row['NAME'];
-        $test['COURSE_ID']=$row['COURSE_ID'];
-   }
-
+        if ( $id == $row['ID']){
+            $test['NAME']=$row['NAME'];
+            $test['COURSE_ID']=$row['COURSE_ID'];
+        }
     }
     $conn->closeConnection();
     return $test;
@@ -167,7 +164,6 @@ function is_course_owner_model($id_course,$id_user):bool{
     $query->execute();
     $users=array();
     while ($row = $query->fetch()) {
-      
         if($row['AUTHOR_ID']==$id_user)
         return true;
     }

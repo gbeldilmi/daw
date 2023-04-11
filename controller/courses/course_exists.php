@@ -4,6 +4,6 @@
 session_start();
 require_once '../model/sql-request.php';
 function course_exists($id):bool{
-    return course_exists($id);
+    return course_exists_model($id);
  
 } 

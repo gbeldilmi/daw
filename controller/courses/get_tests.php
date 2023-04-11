@@ -4,6 +4,5 @@
 session_start();
 require_once '../model/sql-request.php';
 function get_tests($course_id):array{
-
-  return get_tests($course_id);
+  return get_tests_model($course_id);
 }

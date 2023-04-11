@@ -18,7 +18,7 @@ class ConnectionDb
                 $this->database->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
                 print("connection opened ");
             }catch (PDOException $e){
-                print("connection failed : ".$e->getMessage());
+                print("Connection Failed : ".$e->getMessage());
             }
         }
     }

@@ -12,7 +12,7 @@ function get_login(): bool
 {
     $userlogin = $_POST['l_username'];
     $passlogin = hash('sha256', $_POST['l_password']);
-//    echo "<br>".$_POST['l_username']."  ".$_POST['l_password']."<br>";
+    echo "<br>".$_POST['l_username']."  ".$_POST['l_password']."<br>";
     $userQuery = array();
     $userQuery = array_merge($userQuery, get_user_login());
     $a = array();
