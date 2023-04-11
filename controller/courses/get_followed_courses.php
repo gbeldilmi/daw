@@ -6,5 +6,4 @@ session_start();
 require_once '../../model/sql-request.php';
 function get_followed_courses():array{
     return get_followed_courses_model();
- 
 } 
