@@ -1,6 +1,5 @@
 <?php
 require_once '../model/sql-request.php';
-session_start();
 // return true if the user is logged in as a student
 function is_student():bool{
     $userlogin=$_SESSION["username"];

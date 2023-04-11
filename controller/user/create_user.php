@@ -17,5 +17,6 @@ function create_user():bool{
     $username=$_POST["r_username"];
     $password=$_POST["r_password"];
     $role=$_POST["r_role"];
+    echo $role;
     return insert_user($firstname,$lastname,$username,$password,$role);
 }
