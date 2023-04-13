@@ -1,19 +1,14 @@
 <?php
-  $test = get_test($_GET['id']); // xml
-if (!isset($_SESSION['user_id'])) {
-  header("Location: login.php");
-}
-
-if (empty($_GET['id'])) {
-  header('Location: index.php?p=404');
-}
+$test = get_test($_GET['id']); // xml
 ob_start();
 ?>
 
+<h1>Test</h1>
+
+<form method='post' action='test.php'>
+  
 <?php
-    echo "<h1>Test $testId</h1>";
-    echo "<form method='post' action='test.php'>";
-    echo "<input type='hidden' name='test_id' value='$testId'>"; // Soumettre l'ID du test avec le formulaire
+    echo "<input type='hidden' name='test_id' value='" . $id . "'>"; // Soumettre l'ID du test avec le formulaire
     echo "<ul>";
     foreach ($test['questions'] as $question) {
         echo "<li>";
@@ -28,11 +23,10 @@ ob_start();
         echo "</ul>";
         echo "</li>";
     }
-    echo "</ul>";
-    echo "<button type='submit'>Soumettre</button>";
-    echo "</form>";
-    ?>
+?>
 
+</ul>
+<button type='submit'>Soumettre</button>
 </form>
 
 

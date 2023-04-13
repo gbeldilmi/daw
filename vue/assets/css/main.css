@@ -31,9 +31,6 @@ body > header {
   justify-content: space-between;
 }
 body > header :first-child {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.5rem;
-  font-weight: bold;
 }
 body > header :last-child {
   display: flex;
@@ -59,7 +56,11 @@ body > main {
 /******************************************************************************
  * Pages                                                                      *
  ******************************************************************************/
-.list-container {
+.button-menu {
+  
+}
+
+.card-list {
   /* *** */
 }
 
