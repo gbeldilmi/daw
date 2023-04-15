@@ -6,7 +6,7 @@ ob_start();
 <h1>Test</h1>
 
 <form action="checktest();">
-<?php
+    <?php
     $qcount = 1;
     foreach ($test->question as $question) {
         echo '<div class="question" id="q' . $qcount . '">';
@@ -24,12 +24,13 @@ ob_start();
         echo '</ul><p class="ans"></p></div>';
         $qcount = $qcount + 1;
     }
-?>
-<input type="submit" value="Valider">
+    ?>
+    <input type="submit" value="Valider">
 </form>
 
 <script src="vue/assets/js/checktest.js"></script>
 
 <?php
-  $content = ob_get_contents();
-  ob_get_clean();
+$content = ob_get_contents();
+ob_get_clean();
+// done

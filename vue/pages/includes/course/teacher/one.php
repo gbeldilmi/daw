@@ -1,5 +1,5 @@
 <?php
-  $course = get_course($_GET['id']); // xml
+  $course = get_course($id); // xml
   ob_start(); ?>
 
 <!-- 

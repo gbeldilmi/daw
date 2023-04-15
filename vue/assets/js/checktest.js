@@ -2,7 +2,7 @@ function checktest() {
   let dom_questions = querySelector(".question");
   let color_true = "var(--color-7)";
   let color_false = "var(--color-8)";
-  
+
   dom_questions.forEach(elmt => {
     let valid = true;
     elmt.querySelector(".ansv").forEach(e => {

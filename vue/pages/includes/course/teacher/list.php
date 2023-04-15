@@ -1,10 +1,20 @@
 <?php
+  $courses = get_courses(); // array of courses
   ob_start(); ?>
 
-<!-- 
-  Liste des cours du prof connecté
--->
+<?php
+  if (empty($courses)) {
+    echo '<h1>Vous n\'avez pas encore créé de cours.</h1>';
+  } else {
+    echo '<h1>Cours créés :</h1>';
+  }
+  foreach ($courses as $course) {
+    echo '<div class="course-card"><h2>' . $course['NAME'] . '</h2>';
+    echo '<p>' . $course['DESCRIPTION'] . '</p>';
+    echo '<a href="index.php?p=course&id=' . $course['ID'] . '">Voir le cours</a> </div>';
+  } ?>
 
 <?php
   $content = ob_get_contents();
   ob_get_clean();
+// done
