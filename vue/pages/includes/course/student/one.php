@@ -1,10 +1,12 @@
 <?php
-  $id = $_GET['id'];
+  //$id = $_GET['i'];
   $course = get_course($id); // xml
+  $desc = get_course_desc($id); // txt
   if (!is_followed_course($id)) { add_to_followed_courses($id); }
   ob_start(); ?>
 <div>
 <h1><?php echo $course->title; ?></h1>
+<p><?= $desc ?></p>
 <h2>Prérequis :</h2>
 <ul>
   <?php foreach ($course->prerequisite as $prereq) {
@@ -16,16 +18,18 @@
 <ul>
   <?php foreach ($course->ressource as $ressource) {
     echo '<li>';
-    if ($ressource->attributes()->type == 'video') {
-      echo '<video src="' . $ressource->attributes()->path . '"></video>';
-    } else if ($ressource->attributes()->type == 'slide') {
-      echo '<iframe src="' . $ressource->attributes()->path . '"></iframe>';
-    }
+    $path=$ressource['path'];
+    $type=$ressource['type'];
+    $res=$path;
+   
+    echo '<button  id="ressource'. $var.'" class="button" onclick="loadres(' . $path . ',' . $type . ')">'. $res . '</button>';
     echo '</li>';
   } ?>
 </ul>
 </div>
 
+<div class="modal" id="modal"></div>
+<script src="vue\assets\js\loadres.js"></script>
 <?php
   $content = ob_get_contents();
   ob_get_clean();
