@@ -1,7 +1,7 @@
 <?php
 // get_id(////////////////////)
 // return the id of the user
-require_once '../../model/sql-request.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
 session_start();
 //$id=get_id('charle');
 //if($id==-1){

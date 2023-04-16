@@ -101,11 +101,12 @@ function get_course_model($id):array{
 function get_courses_model($owner_id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("select NAME,DESCRIPTION from COURSE WHERE AUTHOR_ID=$owner_id");
+    $query=$db->prepare("select ID,NAME,DESCRIPTION from COURSE WHERE AUTHOR_ID=$owner_id");
     $query->execute();
     $courses=array();
     while ($row = $query->fetch()) {
         $a=array();
+        $a['ID']=$row['ID'];
         $a['NAME']=$row['NAME'];
         $a['DESCRIPTION']=$row['DESCRIPTION'];
         $a['AUTHOR_ID']=$row['AUTHOR_ID'];
@@ -189,15 +190,19 @@ function is_followed_course_model($id_user,$id_course):bool{
 }
 
 function is_test_owner_model($id_test,$id_user):bool{
+    $user_course = array();
+    $user_course = array_merge($user_course, get_courses_model($id_user));
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("select ID,NAME,COURSE_ID from TEST  WHERE ID=$id_user ");
+    $query=$db->prepare("select ID,NAME,COURSE_ID from TEST WHERE ID=$id_user ");
     $query->execute();
     $users=array();
     while ($row = $query->fetch()) {
-      
-        if($row['']==$id_test)
-        return true;
+        foreach ($user_course as $cour){
+            if($row['ID']==$id_test && $cour['COURSE_ID']==$row['COURSE_ID'])
+                return true;
+        }
+
     }
     $conn->closeConnection();
     return false;

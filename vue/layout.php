@@ -28,7 +28,6 @@ get_theme();
 </body>
 <script src='assets/js/jquery.js'></script>
 <script src="assets/js/changetheme.js"></script>
-
 </html>
 <?php
 ob_end_flush();
