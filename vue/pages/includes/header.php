@@ -1,5 +1,7 @@
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT']."/controller/color_theme/get_theme.php";
+  ?>
 <style>
-
 #MonLogo {
   transform: scale(2);
   margin-top:39px;
@@ -46,7 +48,7 @@
 
 </style>
 
-<div id="MonLogo"><img src="/vue/assets/img/logodark.svg" alt="logo" height= "100px" width="auto" /></div>
+<div id="MonLogo"><img src=<?="/vue/assets/img/logo".get_theme().".svg"?> alt="logo" height= "100px" width="auto" /></div>
 <div id="boutons">
   <nav>
     <ul>
