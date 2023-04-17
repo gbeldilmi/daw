@@ -5,7 +5,7 @@ session_start();
 function is_student():bool{
     $userlogin=$_SESSION["username"];
     $userQuery = array();
-    $userQuery = array_merge($userQuery, get_all_roles('student'));
+    $userQuery = array_merge($userQuery, get_all_roles_username('student'));
     for ($i = 0; $i < count($userQuery); $i++) {
         $username = $userQuery[$i];
         if ($username == $userlogin )

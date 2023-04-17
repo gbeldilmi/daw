@@ -24,7 +24,16 @@ function get_ID_User($username):int{
     $conn->closeConnection();
     return $id;
 }
-function get_all_roles($role):array{
+function get_username_id($id):string{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT USERNAME FROM USER WHERE ID='$id'");
+    $query->execute();
+    $id=$query->fetch()['USERNAME'];
+    $conn->closeConnection();
+    return $id;
+}
+function get_all_roles_username($role):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("SELECT username FROM USER WHERE ROLE='$role'");
@@ -36,6 +45,26 @@ function get_all_roles($role):array{
     $conn->closeConnection();
     return $users;
 }
+
+function get_users_model():array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME, EMAIL, USERNAME FROM USER WHERE ROLE!=3");
+    $query->execute();
+    $users=array();
+    while ($row = $query->fetch()) {
+        $a=array();
+        $a['id']=$row['ID'];
+        $a['firstname']=$row['FIRSTNAME'];
+        $a['lastname']=$row['LASTNAME'];
+        $a['email']=$row['EMAIL'];
+        $a['username']=$row['USERNAME'];
+        $users[]=$a;
+    }
+    $conn->closeConnection();
+    return $users;
+}
+
 function insert_user($firstname, $lastname, $username, $password, $role):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -215,6 +244,71 @@ function create_forum_model($id_user,$id_course,$titre):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("INSERT INTO FORUM_DISCUSSION(USER_ID, COURSE_ID, TITLE, CREATED_AT) VALUES ($id_user,$id_course,'$titre',sysdate()) ");
+    $conn->closeConnection();
+    return $query->execute();
+}
+
+function get_forum_id_model($id_forum):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT ID, USER_ID, COURSE_ID, TITLE, CREATED_AT FROM FORUM_DISCUSSION");
+    $query->execute();
+    $forum=array();
+    while ($row = $query->fetch()) {
+        if ($id_forum==$row['ID']){
+            $forum[]=$row['ID'];
+            $forum[]=$row['USER_ID'];
+            $forum[]=$row['COURSE_ID'];
+            $forum[]=$row['TITLE'];
+            $forum[]=$row['CREATED_AT'];
+        }
+    }
+    $conn->closeConnection();
+    return $forum;
+}
+
+function get_forums_model():array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT ID, USER_ID, COURSE_ID, TITLE, CREATED_AT FROM FORUM_DISCUSSION");
+    $query->execute();
+    $forums=array();
+    while ($row = $query->fetch()) {
+        $forum=array();
+        $forum[]=$row['ID'];
+        $forum[]=$row['USER_ID'];
+        $forum[]=$row['COURSE_ID'];
+        $forum[]=$row['TITLE'];
+        $forum[]=$row['CREATED_AT'];
+        $forums[]=$forum;
+    }
+    $conn->closeConnection();
+    return $forums;
+}
+
+function get_messages_forum_model($id_forum):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT DISCUSSION_ID,USER_ID, CONTENT, CREATED_AT FROM FORUM_MESSAGE");
+    $query->execute();
+    $messages=array();
+    while ($row = $query->fetch()) {
+        if ($id_forum==$row['DISCUSSION_ID']){
+            $message=array();
+            $message[]=get_username_id($row['USER_ID']);
+            $message[]=$row['CONTENT'];
+            $message[]=$row['CREATED_AT'];
+            $messages[]=$message;
+        }
+    }
+    $conn->closeConnection();
+    return $messages;
+}
+
+function send_message_forum_model($id_forum,$message,$id_user):bool{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("INSERT INTO FORUM_MESSAGE(USER_ID, DISCUSSION_ID, CONTENT, CREATED_AT) VALUES ($id_user,$id_forum,'$message',sysdate()) ");
     $conn->closeConnection();
     return $query->execute();
 }
