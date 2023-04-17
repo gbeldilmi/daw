@@ -210,3 +210,11 @@ function test_exists($id):bool{
     return false;
 
 }
+
+function create_forum_model($id_user,$id_course,$titre):bool{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("INSERT INTO FORUM_DISCUSSION(USER_ID, COURSE_ID, TITLE, CREATED_AT) VALUES ($id_user,$id_course,'$titre',sysdate()) ");
+    $conn->closeConnection();
+    return $query->execute();
+}

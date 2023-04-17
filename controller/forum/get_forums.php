@@ -1,3 +1,4 @@
 <?php
-//get_forum_owner(id_user)
+//get_forums()
 //return the forums of a user
+
