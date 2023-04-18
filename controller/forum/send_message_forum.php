@@ -1,6 +1,7 @@
 <?php
 //send_message_forum($id_forum,$message)
 //send the message to a forum
+session_start();
 require_once $_SERVER["DOCUMENT_ROOT"].'/model/sql-request.php';
 
 echo send_message_forum($_POST["forum"],$_POST["message"]);

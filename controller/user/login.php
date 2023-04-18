@@ -4,10 +4,10 @@ session_start();
 ob_start();
 $cookie_name = "logged";
 if (get_login()) {
-    setcookie($cookie_name, true, time() + (86400 * 30), "/");
+    setcookie($cookie_name, true, time() + (86400 * 30*60), "/");
 } else
     echo "<script>alert('mot passe ou username bad');</script>";
-//header("Location: http://localhost/vue/index.php?p=login");
+header("Location: http://localhost/vue/index.php?p=login");
 ob_end_flush();
 function get_login(): bool
 {
