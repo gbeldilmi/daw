@@ -17,12 +17,13 @@ prénom,niveau,role,username ou par date de création -->
     <option value="created_at">Date de création</option>
   </select>
   <button type="submit">Rechercher</button>
+  <button type="button" id="reset-button">Réinitialiser</button>
 </form>
 
 
 <h1>Listes des utilisateurs</h1>
 
-<table>
+<table id="user-table">
   <thead>
     <tr>
       <th>Nom</th>
@@ -53,12 +54,6 @@ prénom,niveau,role,username ou par date de création -->
 
 <!--Fenêtre modale pour modifier/supprimer-->
 
- <div id="myModal" class="modal">
-    <button id="edit-user-btn">Modifier</button>
-    <button id="delete-user-btn">Supprimer</button>
-</div>
+ <div id="myModal" class="modal"></div>
 
-
- <script>
-
-</script>
+<script src="vue\assets\js\modalForm.js"></script>
