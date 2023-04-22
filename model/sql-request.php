@@ -68,7 +68,7 @@ function get_users_model():array{
 function insert_user($firstname, $lastname, $username, $password, $role):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("INSERT INTO USER(FIRSTNAME,LASTNAME,USERNAME,PASSWORD,ROLE,CREATED_AT)VALUES ('$firstname','$lastname','$username',sha2('$password',256),'$role',sysdate())");
+    $query=$db->prepare("INSERT INTO USER(FIRSTNAME,LASTNAME,USERNAME,PASSWORD,ROLE,CREATED_AT)VALUES ('$firstname','$lastname','$username','$password','$role',sysdate())");
     $returnq=$query->execute();
     $conn->closeConnection();
     return $returnq;

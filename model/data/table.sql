@@ -1,3 +1,4 @@
+CREATE DATABASE PROJECT;
 CREATE TABLE USER
 (
     ID         INTEGER      NOT NULL AUTO_INCREMENT,
@@ -77,6 +78,22 @@ insert into USER(firstname, lastname, username, password, role, created_at)
 values ('ciccio', 'ciccio', 'ciccio', sha2('toor', 256), '3', sysdate());
 insert into USER(firstname, lastname, username, password, role, created_at)
 values ('charles', 'charles', 'CharleT', sha2('toor', 256), 'teacher', sysdate());
+
+DELIMITER //
+CREATE TRIGGER INSERT_ADMIN_DENY
+    BEFORE INSERT ON USER
+    FOR EACH ROW
+    IF NEW.ROLE='3' THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Insert not possible';
+    END IF;
+CREATE TRIGGER CRIPT_PASSWORD
+    BEFORE INSERT
+    ON USER
+    FOR EACH ROW
+    SET NEW.PASSWORD=SHA2(NEW.PASSWORD,256);
+//
+DELIMITER ;
 
 INSERT INTO `COURSE` (`ID`, `NAME`, `AUTHOR_ID`, `DESCRIPTION`, `CREATED_AT`)
 VALUES (1, 'php', 1, 'dsfsdfsdf', '2023-04-03 09:34:50'),

@@ -87,3 +87,77 @@ body > main {
 .forum-card {
   /* *** */
 }
+
+
+/**
+ * list.php  && thread.php                                                                *
+ **/
+
+
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+  margin-left: 10px;
+}
+.form-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  width: 90%;
+}
+.form-textarea {
+  border-radius: 2px;
+  border: 1px solid grey;
+  width: 90%;
+  height: 30%;
+  box-sizing: border-box;
+  margin-bottom: 7px;
+  margin-left: 10px;
+}
+.buttonlist{
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  padding:10px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-left: 10px;
+}
+.buttonlist:hover{
+  background-color: grey;
+}
+.modal {
+  z-index: 1;
+  border:1px solid grey;
+  overflow: auto;
+  background-color: white;
+  height: 50%;
+}
+.close {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+.close:hover{
+  color: brown;
+  cursor: pointer;
+}
+.form-thread {
+
+  z-index: 1;
+  border:1px solid black;
+  overflow: auto;
+  background-color: #D3D3D3;
+  height: 60%;
+  width:30rem;
+}
+.centretitre {
+
+  text-align:center;
+}
