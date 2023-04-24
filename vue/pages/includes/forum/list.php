@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'].'/controller/user/get_id.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/model/ConnectionDb.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/controller/user/get_id.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/ConnectionDb.php';
 //print_r($_SESSION);
 $username = $_SESSION['username'];
 $user_id = get_id($username);
@@ -12,9 +12,9 @@ $sql = "SELECT FORUM_DISCUSSION.* FROM FORUM_DISCUSSION
         ORDER BY FORUM_DISCUSSION.CREATED_AT DESC";
 
 $title = "List";
-$conn=new ConnectionDb();
-$db=$conn->database;
-$query=$db->prepare($sql);
+$conn = new ConnectionDb();
+$db = $conn->database;
+$query = $db->prepare($sql);
 $query->execute();
 
 while ($row = $query->fetch()) {
@@ -22,7 +22,8 @@ while ($row = $query->fetch()) {
     echo '<br>';
     echo "<p>Date de création : " . $row["CREATED_AT"] . "</p>";
 }
-
+/////////// ---> passer par les controllers pour les requêtes à la BDD
+ob_start();
 ?>
 <div class="modal">
     <div class="modal-content">
