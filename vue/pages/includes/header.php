@@ -53,9 +53,7 @@
   <nav>
     <ul>
     <li><button id="theme" onclick="changeTheme()"><?= '<img src="assets/img/' . get_theme() . '.png" width="15" height="15">' ?></button></li>
-    <li><button id="header-button">Edudiant</button></li>
-    <li><button id="header-button">Professeur</button></li>
-    <li><button id="header-button">Connexion</button></li>
+    <li><button id="header-button" onclick="window.location='./index.php?p=login'">Connexion</button></li>
     </ul>
 
 </nav>
