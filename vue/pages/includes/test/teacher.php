@@ -1,5 +1,5 @@
 <?php
-$test = get_test($id); // récupérer le test depuis la base de données
+$test = get_test_xml($id); // récupérer le test depuis la base de données
 ob_start();
 ?>
 

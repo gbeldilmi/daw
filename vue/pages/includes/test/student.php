@@ -1,5 +1,5 @@
 <?php
-$test = get_test($id); // xml
+$test = get_test_xml($id); // xml
 ob_start();
 ?>
 
