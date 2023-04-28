@@ -14,6 +14,7 @@ function logout(){
         unset($_COOKIE['logged']);
         $_SESSION = array();
         session_destroy();
+
     }
 }
 ob_flush();

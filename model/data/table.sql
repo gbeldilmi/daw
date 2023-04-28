@@ -1,4 +1,5 @@
-CREATE DATABASE PROJECT;
+CREATE DATABASE project;
+use project;
 CREATE TABLE USER
 (
     ID         INTEGER      NOT NULL AUTO_INCREMENT,
@@ -44,7 +45,7 @@ CREATE TABLE FOLLOWED_COURSE
 CREATE TABLE FORUM_DISCUSSION
 (
     ID         INTEGER      NOT NULL AUTO_INCREMENT,
-    USER_ID    INTEGER      NOT NULL,
+    USER_ID    INTEGER      NOT NULL,#USER WHO CREATED THE FORUM THREAD
     COURSE_ID  INTEGER      NOT NULL,
     TITLE      VARCHAR(255) NOT NULL,
     CREATED_AT DATETIME     NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE FORUM_DISCUSSION
 CREATE TABLE FORUM_MESSAGE
 (
     ID            INTEGER      NOT NULL AUTO_INCREMENT,
-    USER_ID       INTEGER      NOT NULL,
+    USER_ID       INTEGER      NOT NULL,#USER WHO CREATED THE MESSAGE
     DISCUSSION_ID INTEGER      NOT NULL,
     CONTENT       VARCHAR(256) NOT NULL,
     CREATED_AT    DATETIME     NOT NULL,
@@ -65,10 +66,10 @@ CREATE TABLE FORUM_MESSAGE
 );
 create table TEST_USER
 (
-    id      INTEGER       not null primary key auto_increment,
-    id_test INTEGER       not null references TEST (ID) ON DELETE CASCADE,
-    id_user INTEGER       not null references USER (ID) ON DELETE CASCADE,
-    score   decimal(5, 2) not null
+    ID      INTEGER       NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    TEST_ID INTEGER       NOT NULL REFERENCES TEST (ID) ON DELETE CASCADE,
+    USER_ID INTEGER       NOT NULL REFERENCES USER (ID) ON DELETE CASCADE,
+    SCORE   decimal(5, 2) NOT NULL
 );
 insert into USER(firstname, lastname, username, password, role, created_at)
 values ('charles', 'charles', 'charles', sha2('toor', 256), 'student', sysdate());
