@@ -1,5 +1,5 @@
 <?php
-$test = get_test($id); // récupérer le test depuis la base de données
+$test = get_test_xml($id); // récupérer le test depuis la base de données
 ob_start();
 ?>
 
@@ -7,10 +7,12 @@ ob_start();
 
 <form action="controller/courses/update_test.php" method="post">
   <input type="hidden" name="test_id" value="<?= $id ?>">
+  <div id="question-container">
   <?php
   $qcount = 1;
   foreach ($test->question as $question) {
     echo '<div class="question" id="q' . $qcount . '">';
+    echo '<button onclick="delete_question(' . $qcount . ')">Supprimer</button>';
     echo '<p>' . $qcount . '. ' . $question->text . '</p>';
     echo '<ul>';
     foreach ($question->answer as $answer) {
@@ -26,10 +28,12 @@ ob_start();
     $qcount = $qcount + 1;
   }
   ?>
-
-  <button type="submit">Enregistrer</button>
+  </div>
+  <button onclick="add_question()">Ajouter une question</button>
+  <input type="submit" value="Enregistrer">
 </form>
 
+<?= '<script src="vue/assets/js/edittest.js" onload="inittest(' . $qcount . ')"></script>' ?>
 
 <?php
 $content = ob_get_contents();
