@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_test_xml.php";
 $test = get_test_xml($id); // récupérer le test depuis la base de données
 ob_start();
 ?>

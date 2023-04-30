@@ -1,4 +1,5 @@
 <?php
+  require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_courses.php";
   $courses = get_courses(); // array of courses
   ob_start(); ?>
 

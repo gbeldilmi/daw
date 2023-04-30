@@ -1,4 +1,8 @@
 <?php
+require_once "../controller/courses/get_course.php";
+require_once "../controller/courses/get_course_desc.php";
+require_once "../controller/courses/is_followed_course.php";
+require_once "../controller/courses/add_to_followed_courses.php";
 //$id = $_GET['i'];
 $course = get_course($id); // xml
 $desc = get_course_desc($id); // txt

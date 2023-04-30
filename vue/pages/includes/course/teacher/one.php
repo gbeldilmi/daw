@@ -1,4 +1,6 @@
 <?php
+  require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_course.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_course_xml.php";
   $id = $_GET['i'];
   $course = get_course($id); // data
   $course_xml = get_course_xml($id); // xml

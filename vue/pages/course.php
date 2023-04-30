@@ -1,6 +1,8 @@
 <?php
-require_once "../controller/user/is_connected.php";
-require_once "../controller/user/is_student.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_connected.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_student.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/course_exists.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/is_course_owner.php";
   if (!is_connected()) {
     header('Location: index.php?p=login');
   }

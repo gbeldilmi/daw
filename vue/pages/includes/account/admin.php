@@ -1,5 +1,6 @@
 <?php
-  $users = get_followed_users(); // array ofusers
+  require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/get_all_users.php";
+  $users = get_all_users(); // array ofusers
   ob_start(); ?>
 
 <!--barre de rechercher avec options pour filtrer les utilisateurs par nom,
@@ -57,3 +58,8 @@ prénom,niveau,role,username ou par date de création -->
  <div id="myModal" class="modal"></div>
 
 <script src="vue\assets\js\modalForm.js"></script>
+
+
+<?php
+  $content = ob_get_contents();
+  ob_get_clean();
