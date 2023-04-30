@@ -12,24 +12,23 @@ ob_start();
   $qcount = 1;
   foreach ($test->question as $question) {
     echo '<div class="question" id="q' . $qcount . '">';
-    echo '<button onclick="delete_question(' . $qcount . ')">Supprimer</button>';
-    echo '<p>' . $qcount . '. ' . $question->text . '</p>';
-    echo '<ul>';
+    echo '<button onclick="deletequestion(' . $qcount . ')">Supprimer</button>';
+    echo '<textarea id="q' . $qcount . 'qt" name="q' . $qcount . 'qt" >' . $question->text . '</textarea><ul>';
+    $acount = 1;
     foreach ($question->answer as $answer) {
-      echo '<li><label><input type="checkbox" ';
+      echo '<li><label><input id="q' . $qcount . 'a' . $acount . 'v" name="q' . $qcount . 'a' . $acount . 'v" type="checkbox" ';
       if ($answer['valid'] == 'true') {
-        echo 'class="ansv"';
-      } else {
-        echo 'class="ansf"';
+        echo 'checked';
       }
-      echo '>' . $answer->text . '</label></li>';
+      echo ' ><input id="q' . $qcount . 'a' . $acount . 'v" name="q' . $qcount . 'a' . $acount . 't" type="text" value="' . $answer->text . '"></label></li>';
+      $acount = $acount + 1;
     }
     echo '</ul><p class="ans"></p></div>';
     $qcount = $qcount + 1;
   }
   ?>
   </div>
-  <button onclick="add_question()">Ajouter une question</button>
+  <button onclick="addquestion()">Ajouter une question</button>
   <input type="submit" value="Enregistrer">
 </form>
 
