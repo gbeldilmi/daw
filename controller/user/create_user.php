@@ -9,7 +9,7 @@ if (create_user()) {
     echo "  user created";
 } else
     echo "<script>alert('mot passe ou username bad');</script>";
-
+header('Location: index.php?p=home');
 function create_user():bool{
     $firstname=$_POST["r_firstname"];
     $lastname=$_POST["r_lastname"];
