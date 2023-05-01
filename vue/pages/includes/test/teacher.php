@@ -17,14 +17,14 @@ ob_start();
     echo '<textarea id="q' . $qcount . 'qt" name="q' . $qcount . 'qt" >' . $question->text . '</textarea><ul>';
     $acount = 1;
     foreach ($question->answer as $answer) {
-      echo '<li><label><input id="q' . $qcount . 'a' . $acount . 'v" name="q' . $qcount . 'a' . $acount . 'v" type="checkbox" ';
+      echo '<li><input id="q' . $qcount . 'a' . $acount . 'v" name="q' . $qcount . 'a' . $acount . 'v" type="checkbox" ';
       if ($answer['valid'] == 'true') {
         echo 'checked';
       }
-      echo ' ><input id="q' . $qcount . 'a' . $acount . 'v" name="q' . $qcount . 'a' . $acount . 't" type="text" value="' . $answer->text . '"></label></li>';
+      echo ' ><input id="q' . $qcount . 'a' . $acount . 't" name="q' . $qcount . 'a' . $acount . 't" type="text" value="' . $answer->text . '"></li>';
       $acount = $acount + 1;
     }
-    echo '</ul><p class="ans"></p></div>';
+    echo '</ul></div>';
     $qcount = $qcount + 1;
   }
   ?>

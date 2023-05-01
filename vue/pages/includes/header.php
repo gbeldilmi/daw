@@ -3,10 +3,11 @@
   ?>
 <style>
 #MonLogo {
-  transform: scale(2);
+  height: 50px;
+  /*transform: scale(2);
   margin-top:39px;
   margin-left:35px;
-  margin-bottom: -40px;
+  margin-bottom: -40px;*/
 }
 
 #boutons {
