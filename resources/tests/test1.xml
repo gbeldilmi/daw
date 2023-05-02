@@ -3,7 +3,7 @@
     <question>
         <text>Qu'est ce que Python?</text>
             <answer valid="true">un langage de prog</answer>
-            <answer valid="false">un jeu</answer>
+            <answer valid="true">un jeu</answer>
             <answer valid="false">une serie televise</answer>
             <answer valid="false">un serpent</answer>
     </question>

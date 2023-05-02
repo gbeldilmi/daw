@@ -2,33 +2,37 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/controller/courses/get_test.php';
 //get_test_xml(2);
 function get_test_xml($id):array{
-    $temp=get_test($id);
-    $test=array(
-        'name'=>$temp['NAME'],
-        'course'=>$temp['COURSE_ID']
-    );
+    $test=array();
     $path=$_SERVER['DOCUMENT_ROOT']."/resources/tests/test".$id.".xml";
-    echo $path;
     // Load the XML file
-    $xml = simplexml_load_file($path)or die("Failed to load");
-
-    $question=array();
-    foreach ($xml->children() as $element) {
-        $text=array(
-            'text' => (string) $element->text
+    if(file_exists($path)){
+        $temp=get_test($id);
+        $test=array(
+            'name'=>$temp['NAME'],
+            'course'=>$temp['COURSE_ID']
         );
-        foreach ($element->answer as $answer) {
-            $answer_array=array(
-                'answer'=>(string) $answer,
-                'valid'=>(string) $answer['valid']
+        $xml = simplexml_load_file($path);
+        $question=array();
+        foreach ($xml->children() as $element) {
+            $text=array(
+                'text' => (string) $element->text
             );
-            $text=array_merge($text,array($answer_array));
+            $answer_master=array();
+            foreach ($element->answer as $answer) {
+                $answer_array=array(
+                    'answer'=>(string) $answer,
+                    'valid'=>(string) $answer['valid']
+                );
+                $answer_master=array_merge($answer_master,array($answer_array));
+            }
+            $text=array_merge($text,array('answer'=>$answer_master));
+            $question=array_merge($question,array($text));
+
         }
-        $question=array_merge($question,array($text));
+        $test=array_merge($test,array(
+            'question'=>$question
+        ));
     }
-    $test=array_merge($test,array(
-        'question'=>$question
-    ));
-    print_r($test);
+//    print_r($test);
     return $test;
 }
