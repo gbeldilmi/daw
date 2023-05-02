@@ -2,9 +2,10 @@
   require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_course.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_course_xml.php";
   $id = $_GET['i'];
-  $course = get_course($id); // data
+//  $course = get_course($id); // data
   $course_xml = get_course_xml($id); // xml
-  ob_start(); ?>
+//  ob_start();
+  ?>
 
 <!-- 
   modifier un course
@@ -13,36 +14,40 @@
 <form method="post" action="../controller/courses/edit_course.php">
 <p>Toute modification apportée  sera appliquée à l'ensemble de votre cours. </p>
 <label for="title">Titre Cours:</label>
-        <?= '<input type="text" id="title" name="title" value="' . $course['NAME'] . '">' ?>
+        <?= '<input type="text" id="title" name="title" value="' . $course_xml['name'] . '">' ?>
 <label for="description">Description:</label>
-        <?= '<input type="text" id="description" name="description" value="' . $course['DESCRIPTION'] . '">' ?>
+        <?= '<input type="text" id="description" name="description" value="' . $course_xml['description'] . '">' ?>
 <label for="niveau">Niveau:</label>
-        <?= '<input type="text" id="niveau" name="niveau" value="' . $course['NIVEAU'] . '">' ?> 
+        <?= '<input type="text" id="niveau" name="niveau" value="' . $course_xml['niveau'] . '">' ?>
 
 <h3> Ressource du cours </h3> 
 
 <?php
      $rcount=1;
-     foreach($course_xml->ressource as $ressource){
-                echo '<div class="ressource" id="r' . $rcount .'>';
-                echo '<p> ressource N°' . $rcount . '. ' . $ressource . '</p>'; 
+     foreach($course_xml["resource"] as $ressource){
+         print_r($ressource);
+         echo gettype($ressource)."<br>";
+                echo '<div class="ressource" id="r' . $rcount .'">';
+                echo '<p> ressource N°' . $rcount . '. ' . $ressource . '</p>';
                 echo'<input type="text" placeholder="Modifier ici cette ressource">';
                 echo '<button onclick="delete_ressource(' . $rcount . ')">Supprimer </button>';
-                echo '<button onclick="update_ressource(' . $rcount . ')">Modifier </button>';              
-}
+                echo '<button onclick="update_ressource(' . $rcount . ')">Modifier </button>';
+         $rcount++;
+     }
 ?> 
 
 <h3> Prérequis </h3>
 
 <?php
      $pcount=1;
-     foreach($course_xml->prerequis as $prerequis){
-                echo '<div class="prerequis" id="p' . $pcount .'>';
-                echo '<p> prérequis N°' . $pcount . '. ' . $prerequis . '</p>'; 
+     foreach($course_xml["prerequisite"] as $prerequis){
+                echo '<div class="prerequis" id="p' . $pcount .'">';
+                echo '<p> prérequis N°' . $pcount . '. ' . $prerequis . '</p>';
                 echo'<input type="text" placeholder="Modifier ici le prérequis">';
                 echo '<button onclick="delete_prerequis(' . $pcount . ')">Supprimer </button>';
-                echo '<button onclick="update_prerequis(' . $pcount . ')">Modifier </button>';              
-}
+                echo '<button onclick="update_prerequis(' . $pcount . ')">Modifier </button>';
+         $pcount++;
+     }
 ?> 
 
 <input type="submit" value="Enregistrer les modifications">
@@ -53,7 +58,7 @@
 
 <h3> Associé ici une nouvelle ressouce a votre cours </h3>
 
-<from method="post" action="">
+<form method="post" action="">
 <label for="path">Ajouter le chemin vers la ressource:</label>
 <input type="file" name="new_ressource">
 <label for="type">Type :</label>
@@ -66,7 +71,7 @@
 
 <h3> Associé  ici un nouveau prérequis a ce cours </h3>
 
-<from method="post" action="">
+<form method="post" action="">
 <label for="desc_prerequis">Ajouter :</label>
 <input type="text" name="new_prerequis">
 <input type="submit" value="Ajouter">

@@ -112,7 +112,7 @@ function create_course_model($name,$description):bool{
 function get_course_model($id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("SELECT ID,NAME,DESCRIPTION, AUTHOR_ID FROM COURSE");
+    $query=$db->prepare("SELECT ID,NAME,DESCRIPTION,NIVEAU,AUTHOR_ID FROM COURSE");
     $query->execute();
     $course=array();
     while ($row = $query->fetch()) {
@@ -120,6 +120,7 @@ function get_course_model($id):array{
             $course['NAME']=$row['NAME'];
             $course['DESCRIPTION']=$row['DESCRIPTION'];
             $course['AUTHOR_ID']=$row['AUTHOR_ID'];
+            $course['NIVEAU']=$row['NIVEAU'];
         }
     }
     $conn->closeConnection();

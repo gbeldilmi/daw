@@ -5,30 +5,57 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
 
 create_course($_POST["name"],$_POST["prerequisite"],$_POST["description"],$_POST["path"]);
 
-
-function create_course($name,array $prerequisite,$description,$path):bool{
-    $ext = pathinfo($path, PATHINFO_EXTENSION);
-    $type=($ext=="ppt"||$ext=="ppt")?"slide":"video";
+function create_course($name,array $prerequisite,$description,array $resource):bool{
+    $temp=array();
+    foreach ($resource as $item) {
+        echo $item."<br>";
+        $ext = pathinfo($item, PATHINFO_EXTENSION);
+        if($ext == "ppt" || $ext == "pptx")
+            $type="slide";
+        else{
+            if ($ext == "mp4" || $ext == "avi")
+                $type="video";
+            else
+                $type="unkown";
+        }
+        $temp=array_merge($temp,
+            array(array(
+            "resource"=>$item,
+            "type"=>$type
+        )));
+//        array_push($temp,$item);
+    }
+        print_r($temp);print_r($resource);
+    $resource=$temp;
+    $temp=array();
+    foreach ($prerequisite as $item) {
+        echo $item."<br>";
+        $temp=array_merge($temp,
+            array(array(
+                "prerequisite"=>$item
+            )));
+//        array_push($temp,$item);
+    }
+    print_r($temp);print_r($prerequisite);
+    $prerequisite=$temp;
     $data=array(
         "cour" => array(
             'name'=>"$name",
-            'resource' => "$path",
-            'type' => "$type",
-            'prerequisite'=> array($prerequisite)
+            'resource' => $resource,
+            'prerequisite'=> $prerequisite
         )
     );
-    $i=create_course_model($name,$description);
+//    $i=create_course_model($name,$description);
     print_r($data);
-    course_TO_XML($data,$i);
+    course_TO_XML($data,100);
     return true;
 }
-
 //Create a Course into a XML File
 function course_TO_XML(array $data,$i)
 {
     $cour = new SimpleXMLElement("<course$i/>");
     array_to_xml($data,$cour);
-    print_r($data);
+//    print_r($data);
     echo $cour->asXML();
 }
 function array_to_xml($data, &$cour)
@@ -40,17 +67,14 @@ function array_to_xml($data, &$cour)
         } else {
             // If the value is not an array, add it as a child element
             if($key=="resource"){
-                $cour->addChild($key);
-                $cour->resource->addAttribute("path",$value);
+                $cour->addChild("resource");
+                $cour->xpath("//resource[last()]")[0]->addAttribute("type",htmlspecialchars($data["type"]));
+                $cour->xpath("//resource[last()]")[0]->addAttribute("path",htmlspecialchars($value));
+
             }else{
-                if($key=="type"){
-                    $cour->resource->addAttribute("type",$value);
-                }
-                else{
-                    if(gettype($key)=="integer")
-                        $key="prerequisite";
+                echo "no";
+                if($key!="type" && $key!="path")
                     $cour->addChild($key, htmlspecialchars($value));
-                }
             }
         }
     }
