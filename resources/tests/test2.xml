@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<test2>
+    <question>
+        <text>Qu'est ce que Python?</text>
+        <value valid="true">un langage de prog</value>
+        <value valid="false">un jeu</value>
+        <value valid="false">une serie televise</value>
+        <value valid="false">un serpent</value>
+    </question>
+    <question>
+        <text>Comment definir un titre dans le html?</text>
+        <value valid="false">avec une balise "nav"</value>
+        <value valid="false">avec un #</value>
+        <value valid="true">avec la balise "title"</value>
+        <value valid="false">avec "//"</value>
+    </question>
+</test2>
