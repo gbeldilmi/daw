@@ -4,7 +4,7 @@
   $id = $_GET['i'];
 //  $course = get_course($id); // data
   $course_xml = get_course_xml($id); // xml
-//  ob_start();
+  ob_start();
   ?>
 
 <!-- 

@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_test_xml.php";
 $id=$_GET["id"];
 $test = get_test_xml($id); // récupérer le test depuis la base de données
-//ob_start();
+ob_start();
 
 if(count($test)>1){
 ?>

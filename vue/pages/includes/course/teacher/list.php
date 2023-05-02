@@ -1,7 +1,8 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_courses.php";
-  $courses = get_courses(); // array of courses
-  ob_start(); ?>
+  $courses = get_all_courses(); // array of courses
+  ob_start();
+  ?>
 
 <?php
   if (empty($courses)) {
@@ -12,7 +13,7 @@
   foreach ($courses as $course) {
     echo '<div class="course-card"><h2>' . $course['NAME'] . '</h2>';
     echo '<p>' . $course['DESCRIPTION'] . '</p>';
-    echo '<a href="index.php?p=course&id=' . $course['ID'] . '">Voir le cours</a> </div>';
+    echo '<a href=http://localhost/vue/index.php?p=includes/course/teacher/one&i=' . $course['ID'] . '>Voir le cours</a> </div>';
   } ?>
 
 <?php
