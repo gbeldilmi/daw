@@ -127,6 +127,23 @@ function get_course_model($id):array{
     return $course;
 }
 
+function get_all_courses_model():array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT ID,NAME,DESCRIPTION,AUTHOR_ID FROM COURSE");
+    $query->execute();
+    $courses=array();
+    while ($row = $query->fetch()) {
+        $a=array();
+        $a['ID']=$row['ID'];
+        $a['NAME']=$row['NAME'];
+        $a['DESCRIPTION']=$row['DESCRIPTION'];
+        $a['AUTHOR_ID']=$row['AUTHOR_ID'];
+        $courses[]=$a;
+    }
+    $conn->closeConnection();
+    return $courses;
+}
 function get_courses_model($owner_id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
