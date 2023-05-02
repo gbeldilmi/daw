@@ -9,7 +9,7 @@ if(count($test)>1){
 
 <h1> Edition du test </h1>
 
-<form action="controller/courses/update_test.php" method="post">
+<form action="../controller/courses/update_test.php" method="post">
   <input type="hidden" name="test_id" value="<?= $id ?>">
   <div id="question-container">
   <?php
