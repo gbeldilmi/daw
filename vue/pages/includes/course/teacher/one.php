@@ -10,16 +10,14 @@
   modifier un course
 -->
 
-<form method="post" action="">
+<form method="post" action="../controller/courses/edit_course.php">
 <p>Toute modification apportée  sera appliquée à l'ensemble de votre cours. </p>
 <label for="title">Titre Cours:</label>
         <?= '<input type="text" id="title" name="title" value="' . $course['NAME'] . '">' ?>
-<label for="author_id">Auteur:</label>
-        <?= '<input type="text" id="author_id" name="author_id" value="' . $course['AUTHOR_ID'] . '">' ?>
 <label for="description">Description:</label>
         <?= '<input type="text" id="description" name="description" value="' . $course['DESCRIPTION'] . '">' ?>
-<label for="title">Titre Cours:</label>
-        <?= '<input type="text" id="title" name="title" value="' . $course['NIVEAU'] . '">' ?> 
+<label for="niveau">Niveau:</label>
+        <?= '<input type="text" id="niveau" name="niveau" value="' . $course['NIVEAU'] . '">' ?> 
 
 <h3> Ressource du cours </h3> 
 
@@ -68,7 +66,7 @@
 
 <h3> Associé  ici un nouveau prérequis a ce cours </h3>
 
-<from method="post action=">
+<from method="post" action="">
 <label for="desc_prerequis">Ajouter :</label>
 <input type="text" name="new_prerequis">
 <input type="submit" value="Ajouter">
