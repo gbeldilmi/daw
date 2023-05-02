@@ -5,7 +5,6 @@
  * Root                                                                       *
  ******************************************************************************/
 * {
-  color: inherit;
   margin: 0;
   padding: 0;
 }
@@ -15,7 +14,7 @@ html {
 }
 body {
   background-color: var(--color-0);
-  color: var(--color-8);
+  color: var(--color-5);
   min-width: 280px;
 }
 div, header, main, footer {
@@ -26,7 +25,7 @@ div, header, main, footer {
  * Header                                                                     *
  ******************************************************************************/
 body > header {
-  background-color: var(--color-2);
+  background-color: var(--color-6);
   display: flex;
   justify-content: space-between;
 }
@@ -50,7 +49,8 @@ body > footer {
  * Main                                                                       *
  ******************************************************************************/
 body > main {
-  background-color: var(--color-1);
+  background-color: var(--color-6);
+  color:var(--color-6)
 }
 
 #modal {
@@ -103,14 +103,14 @@ body > main {
 .form-input {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid grey;
+  border: 1px solid var(--color-3);
   margin-bottom: 15px;
   margin-left: 10px;
   width: 90%;
 }
 .form-textarea {
   border-radius: 2px;
-  border: 1px solid grey;
+  border: 1px solid var(--color-3);
   width: 90%;
   height: 30%;
   box-sizing: border-box;
@@ -118,8 +118,8 @@ body > main {
   margin-left: 10px;
 }
 .buttonlist{
-  background-color: black;
-  color: white;
+  background-color: var(--color-1);
+  color: var(--color-4);
   border-radius: 2px;
   padding:10px;
   cursor: pointer;
@@ -127,33 +127,33 @@ body > main {
   margin-left: 10px;
 }
 .buttonlist:hover{
-  background-color: grey;
+  background-color: var(--color-2);
 }
 .modal {
   z-index: 1;
-  border:1px solid grey;
+  border:1px solid var(--color-3);
   overflow: auto;
-  background-color: white;
+  background-color: var(--color-0);
   height: 50%;
 }
 .close {
-  background-color: black;
-  color: white;
+  background-color: var(--color-4);
+  color: var(--color-0);
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   float: right;
 }
 .close:hover{
-  color: brown;
+  color: var(--color-5);
   cursor: pointer;
 }
 .form-thread {
 
   z-index: 1;
-  border:1px solid black;
+  border:1px solid var(--color-4);
   overflow: auto;
-  background-color: #D3D3D3;
+  background-color: var(--color-2);
   height: 60%;
   width:30rem;
 }

@@ -2,8 +2,9 @@
   ob_start(); ?>
 
   <style>
+
     #red-square {
-      background-color: white;
+      background-color: var(--color-0);
       width: 60%;
       height: 35rem;
       float: left;
@@ -12,7 +13,7 @@
       white-space: normal;
     }
     #green-square {
-      background-color: white;
+      background-color: var(--color-0);
       display:flex;
       flex-direction: row;
       margin-top: 23px;
@@ -42,8 +43,8 @@
 
     }
     #get-started-button {
-  background-color: #000000;
-  color: white;
+  background-color: var(--color-4);
+  color: var(--color-0);
   border:none;
   padding: 10px 20px;
   text-align: center;
@@ -56,23 +57,23 @@
 }
 
 #get-started-button:hover {
-  background-color: #FF0000;
+  background-color: var(--color-6);
 }
 #txt {
   text-align: center;
   font-size: 16px;
   font-family: sans-serif;
-  color:black;
+  color:var(--color-3);
 }
 #Troiscarre {
-  background-color: white;
+  background-color:var(--color-0);
 width: 20rem;
 height: 10rem;
 
 }
 #TroiscarreSpecial {
 
-  background-color: white;
+  background-color: var(--color-0);
 width: 20rem;
 height: 10rem;
 margin-top:5rem;
@@ -89,8 +90,8 @@ margin-top:5rem;
   color:black;
 }
 #button-basdepage {
-background-color: #000000;
-color: white;
+background-color: var(--color-4);
+color: var(--color-0);
 font-weight: bold;
 border:none;
 text-align: center;
@@ -106,7 +107,7 @@ position: relative;
 }
 
 #button-basdepage:hover {
-background-color: #FF0000;
+background-color: var(--color-0);
 }
 
   </style>
@@ -140,9 +141,7 @@ background-color: #FF0000;
 </div>
 </div>
 
-<div id="section3">
-<p id="txtDeux"> Bienvenue chez ProForma<br></p>
-<button id="button-basdepage">Découvrez nos formations</button>
+
 
 </div>
 
