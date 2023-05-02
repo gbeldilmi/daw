@@ -1,5 +1,7 @@
 <?php
 require_once 'ConnectionDb.php';
+/////////////////////////
+/// @TODO USER
 function get_user_login():array{
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -73,7 +75,8 @@ function insert_user($firstname, $lastname, $username, $password, $role):bool{
     $conn->closeConnection();
     return $returnq;
 }
-
+//////////////
+/// @TODO COURSE
 function add_followed_courses_model($username,$id_course):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -88,7 +91,6 @@ function course_exists_model($id_course):bool{
     $query=$db->prepare("SELECT id FROM COURSE ");
     $query->execute();
     while ($row = $query->fetch()) {
-
         if($row['id']==$id_course)
             return true;
     }
@@ -155,34 +157,7 @@ function get_followed_courses_model():array{
     return $courses;
 }
 
-function get_test_model($id):array{
-    $conn=new ConnectionDb();
-    $db=$conn->database;
-    $query=$db->prepare("SELECT ID,NAME,COURSE_ID FROM TEST");
-    $query->execute();
-    $test=array();
-    while ($row = $query->fetch()) {
-        if ( $id == $row['ID']){
-            $test['NAME']=$row['NAME'];
-            $test['COURSE_ID']=$row['COURSE_ID'];
-        }
-    }
-    $conn->closeConnection();
-    return $test;
-}
 
-function get_tests_model($course_id):array{
-    $conn=new ConnectionDb();
-    $db=$conn->database;
-    $query=$db->prepare("SELECT NAME FROM TEST WHERE COURSE_ID=$course_id");
-    $query->execute();
-    $tests=array();
-    while ($row = $query->fetch()) {
-        $tests[]=$row['NAME'];
-    }
-    $conn->closeConnection();
-    return $tests;
-}
 
 function is_course_owner_model($id_course,$id_user):bool{
     $conn=new ConnectionDb();
@@ -211,7 +186,52 @@ function is_followed_course_model($id_user,$id_course):bool{
     return false;
 
 }
+///////////////////////////
+/// @TODO TEST
 
+function create_test_model($data):int{
+    $name=$data["name"];
+    $course_id=$data["course"];
+    $returnq=-1;
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("INSERT INTO TEST(NAME,COURSE_ID, CREATED_AT ) VALUES ('$name','$course_id',sysdate()) ");
+    $query->execute();
+    $query=$db->prepare("SELECT ID FROM TEST ORDER BY ID DESC LIMIT 1");
+    $query->execute();
+    $returnq=$query->fetch()['ID'];
+    $conn->closeConnection();
+    return $returnq;
+}
+
+function get_test_model($id):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT ID,NAME,COURSE_ID FROM TEST");
+    $query->execute();
+    $test=array();
+    while ($row = $query->fetch()) {
+        if ( $id == $row['ID']){
+            $test['NAME']=$row['NAME'];
+            $test['COURSE_ID']=$row['COURSE_ID'];
+        }
+    }
+    $conn->closeConnection();
+    return $test;
+}
+
+function get_tests_model($course_id):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT NAME FROM TEST WHERE COURSE_ID=$course_id");
+    $query->execute();
+    $tests=array();
+    while ($row = $query->fetch()) {
+        $tests[]=$row['NAME'];
+    }
+    $conn->closeConnection();
+    return $tests;
+}
 function is_test_owner_model($id_test,$id_user):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -239,7 +259,8 @@ function test_exists($id):bool{
     return false;
 
 }
-
+/////////////////////////////////////
+/// @TODO FORUM
 function create_forum_model($id_user,$id_course,$titre):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;

@@ -69,7 +69,7 @@ create table TEST_USER
     ID      INTEGER       NOT NULL PRIMARY KEY AUTO_INCREMENT,
     TEST_ID INTEGER       NOT NULL REFERENCES TEST (ID) ON DELETE CASCADE,
     USER_ID INTEGER       NOT NULL REFERENCES USER (ID) ON DELETE CASCADE,
-    SCORE   decimal(5, 2) NOT NULL
+    SCORE   DECIMAL(5, 2) NOT NULL
 );
 insert into USER(firstname, lastname, username, password, role, created_at)
 values ('charles', 'charles', 'charles', sha2('toor', 256), 'student', sysdate());

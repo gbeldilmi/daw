@@ -1,26 +1,70 @@
 <?php
-// create_course(name, desc)
-session_start();
+// create_test(data)
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/controller/user/is_student.php';
+//$test = array(
+//    'name'=>'test1',
+//    'course'=>2,
+//    'question' =>array(
+//        array(
+//            'text' => 'Qu\'est ce que Python?',
+//            'answer' => array(
+//                array(
+//                    'value' => 'un langage de prog',
+//                    'valid' => 'true'
+//                ),
+//                array(
+//                    'value' => 'un jeu',
+//                    'valid' => 'false'
+//                ),
+//                array(
+//                    'value' => 'une serie televise',
+//                    'valid' => 'false'
+//                ),
+//                array(
+//                    'value' => 'un serpent',
+//                    'valid' => 'false'
+//                )
+//            )
+//        ),
+//    array(
+//        'text' => 'Comment definir un titre dans le html?',
+//        'answer' => array(
+//            array(
+//                'value' => 'avec une balise "nav"',
+//                'valid' => 'false'
+//            ),
+//            array(
+//                'value' => 'avec un #',
+//                'valid' => 'false'
+//            ),
+//            array(
+//                'value' => 'avec la balise "title"',
+//                'valid' => 'true'
+//            ),
+//            array(
+//                'value' => 'avec "//"',
+//                'valid' => 'false'
+//            )
+//        )
+//    )
+//    )
+//);
+//
+//
+//create_test($test);
 
-create_test($_POST["name"],$_POST["prerequisite"],$_POST["description"],$_POST["path"]);
 
-
-function create_test($name,array $prerequisite,$description,$path):bool{
-    $data=array(
-        "test" => array(
-            'name'=>"$name",
-            'resource' => "$path",
-            'prerequisite'=> array($prerequisite)
-        )
-    );
-    $i=create_test_model($name,$description);
+function create_test($data):bool{
+    if(is_student()) return false;
+    $i=create_test_model($data);
     print_r($data);
-    test_TO_XML($data,$i);
+    if($i!=-1)
+        test_TO_XML($data["question"],$i);
+    else
+        return false;
     return true;
 }
-
-//Create a Course into a XML File
 function test_TO_XML(array $data,$i)
 {
     $test = new SimpleXMLElement("<test$i/>");
@@ -32,27 +76,24 @@ function array_to_xml($data, &$test)
 {
     foreach ($data as $key => $value) {
         if (is_array($value)) {
-            // If the value is an array, create a new element and call the function recursively
             array_to_xml($value,$test);
         } else {
-            // If the value is not an array, add it as a child element
-            if($key=="resource"){
-                $test->addChild($key);
-                $test->resource->addAttribute("path",$value);
+            if($key=="value"){
+                $test->xpath("//question[last()]")[0]->addChild($key, htmlspecialchars($value));
+                $test->xpath("//question[last()]/value[last()]")[0]->addAttribute("valid",htmlspecialchars($data["valid"]));
+
             }else{
-                if($key=="type"){
-                    $test->resource->addAttribute("type",$value);
-                }
-                else{
-                    if(gettype($key)=="integer")
-                        $key="prerequisite";
-                    $test->addChild($key, htmlspecialchars($value));
+                if($key=="text"){
+                    $test->addChild("question");
+                    $test->xpath("//question[last()]")[0]->addChild($key, htmlspecialchars($value));
                 }
             }
         }
     }
+
     if ($test->count() > 0){
-        $path="../../resources/tests/".$test->getName().".xml";
+        $path=$_SERVER['DOCUMENT_ROOT']."/resources/tests/".$test->getName().".xml";
         echo $test->saveXML($path);
     }
+
 }
