@@ -17,9 +17,9 @@ function get_test_xml($id):array{
         $text=array(
             'text' => (string) $element->text
         );
-        foreach ($element->value as $answer) {
+        foreach ($element->answer as $answer) {
             $answer_array=array(
-                'value'=>(string) $answer,
+                'answer'=>(string) $answer,
                 'valid'=>(string) $answer['valid']
             );
             $text=array_merge($text,array($answer_array));

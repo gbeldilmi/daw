@@ -2,57 +2,54 @@
 // create_test(data)
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/controller/user/is_student.php';
-//$test = array(
-//    'name'=>'test1',
-//    'course'=>2,
-//    'question' =>array(
-//        array(
-//            'text' => 'Qu\'est ce que Python?',
-//            'answer' => array(
-//                array(
-//                    'value' => 'un langage de prog',
-//                    'valid' => 'true'
-//                ),
-//                array(
-//                    'value' => 'un jeu',
-//                    'valid' => 'false'
-//                ),
-//                array(
-//                    'value' => 'une serie televise',
-//                    'valid' => 'false'
-//                ),
-//                array(
-//                    'value' => 'un serpent',
-//                    'valid' => 'false'
-//                )
-//            )
-//        ),
-//    array(
-//        'text' => 'Comment definir un titre dans le html?',
-//        'answer' => array(
-//            array(
-//                'value' => 'avec une balise "nav"',
-//                'valid' => 'false'
-//            ),
-//            array(
-//                'value' => 'avec un #',
-//                'valid' => 'false'
-//            ),
-//            array(
-//                'value' => 'avec la balise "title"',
-//                'valid' => 'true'
-//            ),
-//            array(
-//                'value' => 'avec "//"',
-//                'valid' => 'false'
-//            )
-//        )
-//    )
-//    )
-//);
-//
-//
-//create_test($test);
+$test = array(
+    'name'=>'test1',
+    'course'=>2,
+    'question' =>array(
+        array(
+            'text' => 'Qu\'est ce que Python?',
+            array(
+                'answer' => 'un langage de prog',
+                'valid' => 'true'
+            ),
+            array(
+                'answer' => 'un jeu',
+                'valid' => 'false'
+            ),
+            array(
+                'answer' => 'une serie televise',
+                'valid' => 'false'
+            ),
+            array(
+                'answer' => 'un serpent',
+                'valid' => 'false'
+            )
+
+        ),
+        array(
+            'text' => 'Comment definir un titre dans le html?',
+            array(
+                'answer' => 'avec une balise "nav"',
+                'valid' => 'false'
+            ),
+            array(
+                'answer' => 'avec un #',
+                'valid' => 'false'
+            ),
+            array(
+                'answer' => 'avec la balise "title"',
+                'valid' => 'true'
+            ),
+            array(
+                'answer' => 'avec "//"',
+                'valid' => 'false'
+            )
+        )
+    )
+);
+
+
+create_test($test);
 
 
 function create_test($data):bool{
@@ -78,9 +75,9 @@ function array_to_xml($data, &$test)
         if (is_array($value)) {
             array_to_xml($value,$test);
         } else {
-            if($key=="value"){
+            if($key=="answer"){
                 $test->xpath("//question[last()]")[0]->addChild($key, htmlspecialchars($value));
-                $test->xpath("//question[last()]/value[last()]")[0]->addAttribute("valid",htmlspecialchars($data["valid"]));
+                $test->xpath("//question[last()]/answer[last()]")[0]->addAttribute("valid",htmlspecialchars($data["valid"]));
 
             }else{
                 if($key=="text"){
