@@ -13,8 +13,8 @@ html {
   font-size: 12px;
 }
 body {
-  background-color: var(--color-0);
-  color: var(--color-5);
+  background-color: var(--color-3);
+  color: var(--color-1);
   min-width: 280px;
 }
 div, header, main, footer {
@@ -25,7 +25,7 @@ div, header, main, footer {
  * Header                                                                     *
  ******************************************************************************/
 body > header {
-  background-color: var(--color-6);
+  background-color: var(--color-2);
   display: flex;
   justify-content: space-between;
 }
@@ -49,8 +49,8 @@ body > footer {
  * Main                                                                       *
  ******************************************************************************/
 body > main {
-  background-color: var(--color-6);
-  color:var(--color-6)
+  background-color: var(--color-3);
+  color:var(--color-1)
 }
 
 #modal {
@@ -119,7 +119,7 @@ body > main {
 }
 .buttonlist{
   background-color: var(--color-1);
-  color: var(--color-4);
+  color: var(--color-1);
   border-radius: 2px;
   padding:10px;
   cursor: pointer;
@@ -133,12 +133,12 @@ body > main {
   z-index: 1;
   border:1px solid var(--color-3);
   overflow: auto;
-  background-color: var(--color-0);
+  background-color: var(--color-1);
   height: 50%;
 }
 .close {
   background-color: var(--color-4);
-  color: var(--color-0);
+  color: var(--color-1);
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
