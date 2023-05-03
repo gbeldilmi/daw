@@ -1,6 +1,6 @@
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/get_all_users.php";
-  $users = get_all_users(); // array ofusers
+  require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/get_users.php";
+  $users = get_users(); // array ofusers
   ob_start(); ?>
 
 <!--barre de rechercher avec options pour filtrer les utilisateurs par nom,
@@ -38,7 +38,7 @@ prénom,niveau,role,username ou par date de création -->
   </thead>
 
 <?php
-  foreach ($users as $user) 
+  foreach ($users as $user) {
 ?>
 
 <!--tableau qui va contenir la liste des utilisateurs afin de pouvoir sélection avec du js une ligne-->
@@ -50,7 +50,10 @@ prénom,niveau,role,username ou par date de création -->
         <td><?= $user['USERNAME'] ?></td>
         <td><?= $user['ROLE'] ?></td>
         <td><?= $user['CREATED_AT'] ?></td>
-  </tr>  
+  </tr>
+      <?php
+  }
+    ?>
  </table>
 
 <!--Fenêtre modale pour modifier/supprimer-->

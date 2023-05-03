@@ -1,4 +1,3 @@
-CREATE DATABASE project;
 use project;
 CREATE TABLE USER
 (

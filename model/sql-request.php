@@ -51,16 +51,19 @@ function get_all_roles_username($role):array{
 function get_users_model():array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME, EMAIL, USERNAME FROM USER WHERE ROLE!=3");
+    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME,NIVEAU,ROLE, EMAIL,CREATED_AT, USERNAME FROM USER WHERE ROLE!=3");
     $query->execute();
     $users=array();
     while ($row = $query->fetch()) {
         $a=array();
-        $a['id']=$row['ID'];
-        $a['firstname']=$row['FIRSTNAME'];
-        $a['lastname']=$row['LASTNAME'];
-        $a['email']=$row['EMAIL'];
-        $a['username']=$row['USERNAME'];
+        $a['ID']=$row['ID'];
+        $a['FIRSTNAME']=$row['FIRSTNAME'];
+        $a['LASTNAME']=$row['LASTNAME'];
+        $a['EMAIL']=$row['EMAIL'];
+        $a['USERNAME']=$row['USERNAME'];
+        $a['NIVEAU']=$row['NIVEAU'];
+        $a['ROLE']=$row['ROLE'];
+        $a['CREATED_AT']=$row['CREATED_AT'];
         $users[]=$a;
     }
     $conn->closeConnection();
