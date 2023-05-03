@@ -9,8 +9,8 @@ get_theme();
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <!-- CSS -->
-    <?= '<link href="assets/css/' . get_theme() . '.css" rel="stylesheet" />' ?>
-    <link href="assets/css/main.css" rel="stylesheet" />
+<!--    --><?php //= '<link href="assets/css/' . get_theme() . '.css" rel="stylesheet" />' ?>
+<!--    <link href="assets/css/main.css" rel="stylesheet" />-->
     <!-- SVG favicon -->
     <link rel="icon" href="assets/img/favicon.svg" />
 </head>
