@@ -3,7 +3,6 @@
   $courses = get_followed_courses(); // array of courses
   ob_start(); ?>
 
-
     
 <?php
   echo'<header>';
