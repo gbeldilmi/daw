@@ -148,7 +148,7 @@ ob_start(); ?>
       <p class="texte">Nous sommes une plateforme éducative en ligne qui offre des cours dans différents domaines, tels que la programmation, le marketing, la finance, etc.<br><br></p>
       <p class="texte">Nous nous engageons à fournir des cours de qualité, dispensés par des experts dans leur domaine, pour vous aider à acquérir de nouvelles compétences et à améliorer votre carrière professionnelle.<br><br></p>
       <p class="texte">Nos cours sont conçus pour être interactifs et adaptés à votre rythme d'apprentissage. Vous pouvez suivre les cours à votre propre rythme et poser des questions à nos instructeurs en ligne si vous avez besoin d'aide.</p>
-      <button class="get-started-button" onclick="window.location='./../index.php?p=login'">Get Started</button>
+      <a href="./index.php?p=login"><button class="get-started-button">Get Started</button></a>
     </div>
     <div class="green-square"></div>
     <div class="image-container">
@@ -174,7 +174,7 @@ ob_start(); ?>
 
   <div class="section3">
     <p class="txtDeux"> Bienvenue chez ProForma<br></p>
-    <button class="button-basdepage" onclick="window.location='./../index.php?p=login'">Découvrez nos formations</button>
+    <a href="./index.php?p=login"><button class="button-basdepage">Découvrez nos formations</button></a>
 
   </div>
   </body>
