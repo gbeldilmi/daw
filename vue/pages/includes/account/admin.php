@@ -60,7 +60,7 @@ prénom,niveau,role,username ou par date de création -->
 
  <div id="myModal" class="modal"></div>
 
-<script src="vue\assets\js\modalForm.js"></script>
+<script src='/vue/assets/js/modalForm.js'></script>
 
 
 <?php

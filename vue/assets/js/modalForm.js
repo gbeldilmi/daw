@@ -4,6 +4,7 @@
   var rows = table.getElementsByTagName("tr");
   
   for (var i = 0; i < rows.length; i++) {
+    console.log(i);
     rows[i].addEventListener("contextmenu", function(event) {
       // Empêche l'action par défaut du clic droit
       event.preventDefault();

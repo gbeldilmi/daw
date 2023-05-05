@@ -1,7 +1,8 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_followed_courses.php";
   $courses = get_followed_courses(); // array of courses
-  ob_start(); ?>
+  ob_start();
+  ?>
 
 <?php
   if (empty($courses)) {
@@ -13,7 +14,8 @@
     echo '<div class="course-card"><h2>' . $course['NAME'] . '</h2>';
     echo '<p>' . $course['DESCRIPTION'] . '</p>';
     echo '<a href="index.php?p=course&id=' . $course['ID'] . '">Accéder au cours</a> </div>';
-  } ?>
+  }
+  ?>
 
 <?php
   $content = ob_get_contents();

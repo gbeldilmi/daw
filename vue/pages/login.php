@@ -1,9 +1,4 @@
 <?php
-
-require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_connected.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_student.php";
-if (is_connected()) {header('Location: index.php?p=home');}
-$title = "Login";
 ob_start();
 ?>
 
@@ -12,6 +7,19 @@ ob_start();
         #divprincipale
         {
             display: flex;
+
+        }
+        #divimage
+        {
+            flex:1;
+            background-color: #D3D3D3;
+
+        }
+        #divimage > img
+        {
+            width: 100%;
+            height: 30em;
+
         }
         #div
         {
@@ -72,7 +80,7 @@ ob_start();
         }
 
         input[type="submit"]:hover {
-            background-color: #FF0000;
+            background-color: rgb(251, 133, 13);
         }
         #lienbas
         {
@@ -89,7 +97,7 @@ ob_start();
     </style>
 
     <div id="divprincipale">
-        <div id="div">
+        <div id="divimage">
             <img src="/vue/assets/img/imglogindeux.jpg" alt="Image" style="width: 100%; object-fit: cover;">
         </div>
         <div id="div">

@@ -7,21 +7,20 @@ require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/is_course_owner.php"
     header('Location: index.php?p=login');
   }
   $title = "Course";
-  $id = $_GET['i'];
-  if (isset($id) && !course_exists($id)) {
+  if (isset($_GET['i']) && !course_exists($_GET['i'])) {
     header('Location: index.php?p=404');
   }
   if (is_student()) {
-    if (!isset($id)) {
+    if (!isset($_GET['i'])) {
       require_once("includes/course/student/list.php");
     } else {
       require_once("includes/course/student/one.php");
     }
   } else {
-    if (!isset($id)) {
+    if (!isset($_GET['i'])) {
       require_once("includes/course/teacher/list.php");
     } else {
-      if (is_course_owner($id)) {
+      if (is_course_owner($_GET['i'])) {
         require_once("includes/course/teacher/one.php");
       } else {
         header('Location: index.php?p=404');
