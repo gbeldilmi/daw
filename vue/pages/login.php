@@ -1,4 +1,9 @@
 <?php
+
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_connected.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_student.php";
+if (is_connected()) {header('Location: index.php?p=home');}
+$title = "Login";
 ob_start();
 ?>
 
