@@ -79,6 +79,41 @@ body > nav {
 body > footer {
   background-color: var(--color-2);
 }
+body > footer {
+  background-color: #f4f4f4;
+  padding: 30px 20px;
+  font-size: 14px;
+}
+
+body > footer h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+body > footer p {
+  margin-bottom: 20px;
+}
+body > footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+body > footer li {
+  margin-bottom: 10px;
+}
+body > footer a {
+  color: #4a4a4a;
+  text-decoration: none;
+}
+.footer-bottom {
+  background-color: #4a4a4a;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+}
 
 /******************************************************************************
  * Main                                                                       *
