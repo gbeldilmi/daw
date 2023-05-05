@@ -4,17 +4,25 @@
   ob_start();
   ?>
 
+    
 <?php
+  echo'<header>';
   if (empty($courses)) {
     echo '<h1>Vous ne suivez aucun cours.</h1>';
   } else {
     echo '<h1>Cours suivis :</h1>';
   }
+  echo'</header>';
+  echo'<ul>';
   foreach ($courses as $course) {
-    echo '<div class="course-card"><h2>' . $course['NAME'] . '</h2>';
-    echo '<p>' . $course['DESCRIPTION'] . '</p>';
-    echo '<a href="index.php?p=course&id=' . $course['ID'] . '">Accéder au cours</a> </div>';
-  }
+    echo'<li>';
+    echo '<h2>' . $course['NAME'] . '</h2>';
+    echo '<p><strong>Niveau :</strong> ' . $course['NIVEAU'] . '</p>';
+    echo '<p><strong>Description :</strong> ' . $course['DESCRIPTION'] . '</p>';
+    echo '<a href="index.php?p=course&id=' . $course['ID'] . '">Accéder au cours</a>';
+    echo '</li>';
+  } 
+  echo '</ul>';
   ?>
 
 <?php

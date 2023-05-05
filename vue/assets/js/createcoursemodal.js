@@ -1,12 +1,14 @@
-const modal = document.getElementById("modal");
-const createCourseButton = document.getElementById("create-course");
+var Bopen=document.querySelector('#create-course');
+const modalForm = document.querySelector('#modal');
+const closeModal = document.getElementById("close-modal");
 
-createCourseButton.addEventListener("click", () => {
-  modal.style.display = "block";
+
+Bopen.addEventListener("click",()=>{
+  modalForm.style.display = 'flex';
+})
+
+
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
 });
 
-window.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-});
