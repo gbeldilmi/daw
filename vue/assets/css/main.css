@@ -44,7 +44,7 @@ body>header :first-child {
   margin: 0.2rem;
 }
 body > header :first-child > img {
-  height: 10rem;
+  height: 100%;
 }
 
 body>nav {
