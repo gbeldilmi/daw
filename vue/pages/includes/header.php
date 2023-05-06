@@ -4,7 +4,7 @@
   ?>
 
 <div><a href="./index.php?p=home"><img src=<?= "/vue/assets/img/logo" . get_theme() . ".svg" ?> alt="logo"
-      height="500" /></a></div>
+      height="100" /></a></div>
 <nav>
   <a class="header-button"><button id="theme" onclick="changeTheme()"><?= '<img src="assets/img/' . get_theme() . '.png" width="16" height="16">' ?></button></a>
   <?php

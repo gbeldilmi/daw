@@ -1,8 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
-print_r(get_user("charle"));
+//print_r(get_user("charle"));
 
 function get_user($username):array{
     $users=array();

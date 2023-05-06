@@ -1,7 +1,10 @@
 <?php
 //create_forum(id_course,title)
 //creation du forum
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
 
 function create_forum($id_course,$titre):bool{

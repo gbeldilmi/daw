@@ -2,6 +2,24 @@
 require_once 'ConnectionDb.php';
 /////////////////////////
 /// @TODO USER
+///
+
+function delete_user_model($id){
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("DELETE FROM USER WHERE ID='$id' AND ROLE!='3'");
+    $query->execute();
+    $conn->closeConnection();
+}
+function update_user_model($id,$email,$username,$level,$role){
+    $level=intval($level);
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("UPDATE USER SET EMAIL='$email',ROLE='$role', USERNAME='$username',NIVEAU='$level', CREATED_AT=sysdate() WHERE ID=$id");
+    $query->execute();
+    $conn->closeConnection();
+}
+
 function get_user_login():array{
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -166,6 +184,7 @@ function get_courses_model($owner_id):array{
 }
 function get_followed_courses_model():array{
     $id=get_ID_User($_SESSION['username']);
+    echo $id;
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("SELECT COURSE_ID FROM FOLLOWED_COURSE WHERE USER_ID=$id ");

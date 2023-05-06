@@ -1,5 +1,5 @@
-/* Debug * /
-* { border: 1px solid purple; } /* */
+/* Debug
+* { border: 1px solid purple; } */
 
 /******************************************************************************
  * Root                                                                       *
@@ -37,7 +37,7 @@ body > header :first-child {
   margin: 0.2rem;
 }
 body > header :first-child > img {
-  height: 100%;
+  height: 10rem;
 }
 body > nav {
   display: flex;

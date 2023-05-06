@@ -1,6 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 ob_start();
 $cookie_name = "logged";
 if (get_login()) {

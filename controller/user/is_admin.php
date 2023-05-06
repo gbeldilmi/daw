@@ -1,7 +1,10 @@
 <?php
 // is_admin()
 // true if the user is an admin, false otherwise
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 require_once $_SERVER["DOCUMENT_ROOT"].'/model/sql-request.php';
 
 function is_admin():bool{

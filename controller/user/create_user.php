@@ -3,7 +3,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
 // create_user(firstname, lastname,username,password, role)
 //             \_______________strings_____________/
 // role: true = teacher, false = student
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 $cookie_name = "logged";
 if (create_user()) {
     echo "  user created";

@@ -1,7 +1,10 @@
 <?php
 // return true if the user is logged in as a teacher
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 function is_teacher():bool{
     $userlogin=$_SESSION["username"];
     $userQuery = array();

@@ -25,8 +25,6 @@
 <?php
      $rcount=1;
      foreach($course_xml["resource"] as $ressource){
-         print_r($ressource);
-         echo gettype($ressource)."<br>";
                 echo '<div class="ressource" id="r' . $rcount .'">';
                 echo '<p> ressource N°' . $rcount . '. ' . $ressource . '</p>';
                 echo'<input type="text" placeholder="Modifier ici cette ressource">';

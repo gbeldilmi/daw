@@ -1,6 +1,9 @@
 <?php
 // create_course(name, desc)
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/sql-request.php';
 
 create_course($_POST["name"],$_POST["prerequisite"],$_POST["description"],$_POST["path"]);
