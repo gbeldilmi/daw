@@ -48,9 +48,8 @@ function create_course($name,array $prerequisite,$description,array $resource):b
             'prerequisite'=> $prerequisite
         )
     );
-//    $i=create_course_model($name,$description);
-    print_r($data);
-    course_TO_XML($data,100);
+    $i=create_course_model($name,$description);
+    course_TO_XML($data,$i);
     return true;
 }
 //Create a Course into a XML File

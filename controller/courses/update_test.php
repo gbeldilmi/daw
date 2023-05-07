@@ -12,7 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/controller/courses/get_test.php';
 function update_test($data):bool{
 //    $i=2;
 //    if(is_student()) return false;
-    $i=get_test($data["id"]);
+    $i=$data["id"];
     if($i!=-1)
         test_TO_XML($data["question"],$i);
     else
