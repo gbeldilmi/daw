@@ -15,7 +15,7 @@ ob_start();
   $qcount = 1;
   foreach ($test["question"] as $question) {
     echo '<div class="question" id="q' . $qcount . '">';
-    echo '<button onclick="deletequestion(' . $qcount . ')">Supprimer</button>';
+    echo '<button type="button" onclick="deletequestion(' . $qcount . ')">Supprimer</button>';
     echo '<textarea id="q' . $qcount . 'qt" name="q' . $qcount . 'qt" >' . $question["text"] . '</textarea><ul>';
     $acount = 0;
     foreach ($question["answer"] as $answer) {
@@ -35,7 +35,7 @@ ob_start();
   <input type="submit" value="Enregistrer">
 </form>
 
-<?= '<script src="../vue/assets/js/edittest.js"></script>' ?>
+<?= '<script src="../vue/assets/js/edittest.js" onload="inittest(' . $qcount . ')"></script>' ?>
 
 <?php
 $content = ob_get_contents();
