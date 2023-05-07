@@ -69,7 +69,7 @@ function get_all_roles_username($role):array{
 function get_users_model():array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME,NIVEAU,ROLE, EMAIL,CREATED_AT, USERNAME FROM USER WHERE ROLE!=3");
+    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME,NIVEAU,ROLE, EMAIL,CREATED_AT, USERNAME,PASSWORD FROM USER WHERE ROLE!=3");
     $query->execute();
     $users=array();
     while ($row = $query->fetch()) {
@@ -286,7 +286,7 @@ function is_test_owner_model($id_test,$id_user):bool{
     return false;
 
 }
-function test_exists($id):bool{
+function test_exists_model($id):bool{
     $conn=new ConnectionDb();
     $db=$conn->database;
     $query=$db->prepare("SELECT id FROM TEST ");

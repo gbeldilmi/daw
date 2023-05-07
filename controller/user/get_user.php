@@ -16,7 +16,7 @@ function get_user($username):array{
     while(!$found && $i < count($users)){
         $a=array();
         $a = array_merge($a, $users[$i]);
-        if ($a["username"] == $username){
+        if ($a["USERNAME"] == $username){
             $user=array_merge($user,$a);
             $found=true;
         }

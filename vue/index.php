@@ -22,6 +22,11 @@ if($page=="admin")
 else
     if($page=="adminuser")
         $page="includes/account/user";
+if($page=="forumlist")
+    $page="includes/forum/list";
+else
+    if($page=="adminuser")
+        $page="includes/account/user";
 if (file_exists($page_dir . '/' . $page . '.php')) {
   // Page
   require_once($page_dir . '/' . $page . '.php');

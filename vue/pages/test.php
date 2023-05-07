@@ -7,7 +7,7 @@
     header('Location: index.php?p=login');
   }
   $title = "Test";
-  $id = $_GET['i'];
+  $id = $_GET['id'];
   if ((isset($id) && !test_exists($id)) || !isset($id)) {
     header('Location: index.php?p=404');
   }

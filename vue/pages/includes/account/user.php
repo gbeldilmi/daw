@@ -1,8 +1,20 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/model/sql-request.php';
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/controller/user/get_user.php';
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
-$user = get_user($_SESSION['username']);
+$user = get_user($_GET['username']);
+
+$to = 'amenabouhamou@gmail.com';
+$subject = 'Subject of the email';
+$message = 'Body of the email';
+$headers = 'From: sender@example.com' . "\r\n" .
+    'Reply-To: sender@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
 ob_start();
 ?>
 
@@ -14,15 +26,11 @@ ob_start();
         compte. </p>
     <div>
         <label for="username">Nom d'utilisateur :</label>
-        <?= '<input type="text" id="username" name="username" value="' . $user['USERNAME'] . '">' ?>
-    </div>
-    <div>
-        <label for="password">Mot de passe actuel :</label>
-        <?= '<input type="password" id="password" name="password" value="' . $user['PASSWORD'] . '">' ?>
+        <?= '<input type="text" id="username" name="username" value="' . $user['USERNAME'] . '" DISABLED>' ?>
     </div>
     <div>
         <label for="new-username">Nouveau nom d'utilisateur :</label>
-        <input type="text" id="new-username" name="new-username">
+        <input type="text" id="new-username" name="new-username" value=<?=$user['USERNAME']?> >
     </div>
     <div>
         <label for="new-password">Nouveau mot de passe :</label>
@@ -36,10 +44,6 @@ ob_start();
         <input type="submit" value="Enregistrer les modifications">
     </div>
 </form>
-
-<div>
-    <button >Supprimer le compte</button>
-</div>
 
 <?php
 $content = ob_get_contents();

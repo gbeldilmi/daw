@@ -5,9 +5,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/ConnectionDb.php';
 //print_r($_SESSION);
 $username = $_SESSION['username'];
 $user_id = get_id($username);
-
-$sql = "SELECT FORUM_DISCUSSION.* FROM FORUM_DISCUSSION
+echo $user_id;
+$sql = "SELECT FORUM_DISCUSSION.*,FORUM_MESSAGE.* FROM FORUM_DISCUSSION
         INNER JOIN FOLLOWED_COURSE ON FORUM_DISCUSSION.COURSE_ID = FOLLOWED_COURSE.COURSE_ID
+        INNER JOIN FORUM_MESSAGE ON FORUM_MESSAGE.DISCUSSION_ID=FORUM_DISCUSSION.ID
         WHERE FOLLOWED_COURSE.USER_ID = $user_id
         ORDER BY FORUM_DISCUSSION.CREATED_AT DESC";
 
@@ -17,13 +18,13 @@ $db = $conn->database;
 $query = $db->prepare($sql);
 $query->execute();
 
+/////////// ---> passer par les controllers pour les requêtes à la BDD
+ob_start();
 while ($row = $query->fetch()) {
     echo "<p>Titre : " . $row["TITLE"] . "</p>";
     echo '<br>';
     echo "<p>Date de création : " . $row["CREATED_AT"] . "</p>";
 }
-/////////// ---> passer par les controllers pour les requêtes à la BDD
-ob_start();
 ?>
 <div class="modal">
     <div class="modal-content">
