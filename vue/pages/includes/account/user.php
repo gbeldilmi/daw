@@ -4,24 +4,15 @@ if(!isset($_SESSION))
 {
     session_start();
 }
-
-$user = get_user($_GET['username']);
-
-$to = 'amenabouhamou@gmail.com';
-$subject = 'Subject of the email';
-$message = 'Body of the email';
-$headers = 'From: sender@example.com' . "\r\n" .
-    'Reply-To: sender@example.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($to, $subject, $message, $headers);
+$user = get_user($_SESSION['username']);
+echo '<input type="text" id="iduser" name="iduser" value="' . $user['ID'] . '" style="display: none">';
 ob_start();
 ?>
 
 <h2>Informations de profil</h2>
 
 
-<form method="post" action="">
+<form method="" action="">
     <p>Toute modification apportée à votre nom d'utilisateur ou mot de passe sera appliquée à l'ensemble de votre
         compte. </p>
     <div>
@@ -34,17 +25,20 @@ ob_start();
     </div>
     <div>
         <label for="new-password">Nouveau mot de passe :</label>
-        <input type="password" id="new-password" name="new-password">
+        <input type="password" id="new-password" name="new-password" onclick="disabledivpass()">
+<!--               onclick="()=>{$('#password').style.display='none';}"-->
+
     </div>
     <div>
         <label for="confirm-password">Confirmer le nouveau mot de passe :</label>
-        <input type="password" id="confirm-password" name="confirm-password">
+        <input type="password" id="confirm-password" name="confirm-password" onclick="disabledivpass()">
     </div>
+    <div id="password" style="display: none"></div>
     <div>
-        <input type="submit" value="Enregistrer les modifications">
+        <input type="button" onclick="validPassword()" value="Enregistrer les modifications">
     </div>
 </form>
-
+    <script src='../vue/assets/js/userpassword.js'></script>
 <?php
 $content = ob_get_contents();
 ob_get_clean();

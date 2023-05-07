@@ -7,14 +7,14 @@
     header('Location: index.php?p=login');
   }
   $title = "Test";
-  $id = $_GET['id'];
-  if ((isset($id) && !test_exists($id)) || !isset($id)) {
+
+  if ((isset($_GET['id']) && !test_exists($_GET['id'])) || !isset($_GET['id'])) {
     header('Location: index.php?p=404');
   }
   if (is_student()) {
     require_once("includes/test/student.php");
   } else {
-    if (is_test_owner($id)) {
+    if (is_test_owner($_GET['id'])) {
       require_once("includes/test/teacher.php");
     } else {
       header('Location: index.php?p=404');

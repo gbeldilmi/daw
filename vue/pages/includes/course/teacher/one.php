@@ -1,13 +1,13 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_course.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_course_xml.php";
-  $id = $_GET['i'];
+  $id = $_GET['id'];
 //  $course = get_course($id); // data
   $course_xml = get_course_xml($id); // xml
   ob_start();
   ?>
 
-<!-- 
+<!--
   modifier un course
 -->
 
@@ -20,7 +20,7 @@
 <label for="niveau">Niveau:</label>
         <?= '<input type="text" id="niveau" name="niveau" value="' . $course_xml['niveau'] . '">' ?>
 
-<h3> Ressource du cours </h3> 
+<h3> Ressource du cours </h3>
 
 <?php
      $rcount=1;
@@ -32,7 +32,7 @@
                 echo '<button onclick="update_ressource(' . $rcount . ')">Modifier </button>';
          $rcount++;
      }
-?> 
+?>
 
 <h3> Prérequis </h3>
 
@@ -46,7 +46,7 @@
                 echo '<button onclick="update_prerequis(' . $pcount . ')">Modifier </button>';
          $pcount++;
      }
-?> 
+?>
 
 <input type="submit" value="Enregistrer les modifications">
 
@@ -80,5 +80,5 @@
 <?php
   $content = ob_get_contents();
   ob_get_clean();
-  
+
 // wissam et feriel

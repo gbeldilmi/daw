@@ -6,7 +6,7 @@ if(!isset($_SESSION))
 require_once $_SERVER['DOCUMENT_ROOT'] . '/controller/forum/get_forums.php';
 //print_r($_SESSION);
 $forums=get_forums();
-var_dump($forums);
+//var_dump($forums);
 
 $title = "List";
 /////////// ---> passer par les controllers pour les requêtes à la BDD

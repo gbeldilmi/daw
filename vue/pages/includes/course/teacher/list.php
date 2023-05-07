@@ -13,7 +13,7 @@
   foreach ($courses as $course) {
     echo '<div class="course-card"><h2>' . $course['NAME'] . '</h2>';
     echo '<p>' . $course['DESCRIPTION'] . '</p>';
-    echo '<a href=http://localhost/vue/index.php?p=courseOneT&i=' . $course['ID'] . '>Voir le cours</a> </div>';
+    echo '<a href=http://localhost/vue/index.php?p=courseOneT&id=' . $course['ID'] . '>Voir le cours</a> </div>';
   } ?>
 
 <?php

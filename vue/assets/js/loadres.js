@@ -2,10 +2,14 @@ function loadres(path, type) {
   let mod = document.getElementById("modal");
   let content = "<button id='closeModal' onclick='closeModal();'>&times;</button>";
   if (type === "video") {
-    content += '<video src="' + path + '"></video>';
-  } else if (type === "slide") {
-    content += '<iframe src="' + path + '"></iframe>';
-  } else {
+    content +='<video width="400" controls>'+
+        '<source src="'+path+'" type="video/mp4">'+
+        'Your browser does not support HTML video.'+
+  '</video>';
+
+  } else if(type==="pdf") {
+    content+='<embed src="'+path+'" width="500" height="600" type="application/pdf">';
+  }else{
     content += '<a href="' + path + '">Télécharger</a>';
   }
   mod.innerHTML = content;

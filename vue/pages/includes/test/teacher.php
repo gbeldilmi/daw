@@ -9,7 +9,7 @@ if(count($test)>1){
 
 <h1> Edition du test </h1>
 
-<form action="../controller/courses/update_test.php" method="post">
+<form method="post">
   <input type="hidden" name="test_id" value="<?= $id ?>">
   <div id="question-container">
   <?php
@@ -33,10 +33,10 @@ if(count($test)>1){
   ?>
   </div>
   <button onclick="addquestion()">Ajouter une question</button>
-  <input type="submit" value="Enregistrer">
+  <input type="button" value="Enregistrer" onclick="sendData()">
 </form>
 
-<?= '<script src="vue/assets/js/edittest.js" onload="inittest(' . $qcount . ')"></script>' ?>
+<?= '<script src="assets/js/edittest.js"></script>' ?>
 
 <?php
 }else

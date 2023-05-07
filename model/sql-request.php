@@ -20,6 +20,14 @@ function update_user_model($id,$email,$username,$level,$role){
     $conn->closeConnection();
 }
 
+function update_user_password_model($id,$username,$password){
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("UPDATE USER SET USERNAME='$username',PASSWORD='$password', CREATED_AT=sysdate() WHERE ID=$id");
+    $query->execute();
+    $conn->closeConnection();
+}
+
 function get_user_login():array{
     $conn=new ConnectionDb();
     $db=$conn->database;
@@ -160,6 +168,7 @@ function get_course_model($id):array{
     $course=array();
     while ($row = $query->fetch()) {
         if ( $id == $row['ID']){
+            $course['ID']=$row['ID'];
             $course['NAME']=$row['NAME'];
             $course['DESCRIPTION']=$row['DESCRIPTION'];
             $course['AUTHOR_ID']=$row['AUTHOR_ID'];
