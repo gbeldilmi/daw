@@ -6,17 +6,7 @@ ob_start();
   main>div {
     background-color: var(--color-4);
     color: var(--color-1);
-    padding: 4rem;
-  }
-
-  .show-courses {
-    background-color: var(--color-3);
-    color: var(--color-4);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 1rem;
+    padding: 2rem;
   }
 
   main>div>a {
