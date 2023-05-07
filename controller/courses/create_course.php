@@ -19,7 +19,10 @@ function create_course($name,array $prerequisite,$description,array $resource):b
             if ($ext == "mp4" || $ext == "avi")
                 $type="video";
             else
-                $type="unkown";
+                if($ext=="pdf")
+                    $type="pdf";
+                else
+                    $type="unkown";
         }
         $temp=array_merge($temp,
             array(array(
