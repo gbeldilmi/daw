@@ -1,6 +1,7 @@
 <?php
 require_once "../controller/user/is_connected.php";
 require_once "../controller/user/is_student.php";
+$title = "Forum";
   if (!is_connected()) {
     header('Location: index.php?p=login');
   }

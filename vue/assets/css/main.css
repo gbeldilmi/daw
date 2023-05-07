@@ -91,10 +91,6 @@ body>nav {
  ******************************************************************************/
 body>footer {
   background-color: var(--color-2);
-}
-
-body>footer {
-  background-color: #f4f4f4;
   padding: 30px 20px;
   font-size: 14px;
 }
@@ -121,13 +117,13 @@ body>footer li {
 }
 
 body>footer a {
-  color: #4a4a4a;
+  color: var(--color-5);
   text-decoration: none;
 }
 
 .footer-bottom {
-  background-color: #4a4a4a;
-  color: #ffffff;
+  background-color: var(--color-3);
+  color: var(--color-1);
   padding: 10px;
   text-align: center;
   font-size: 12px;

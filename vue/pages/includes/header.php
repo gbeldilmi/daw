@@ -9,6 +9,7 @@
   <a class="header-button"><button id="theme" onclick="changeTheme()"><?= '<img src="assets/img/' . get_theme() . '.png" width="16" height="16">' ?></button></a>
   <?php
   if (is_connected()) {
+    echo '<a class="header-button" href="./index.php?p=account"><button>Mon Compte</button></a>';
     echo '<a class="header-button" href="./index.php?p=logout"><button>Déconnexion</button></a>';
   } else {
     echo '<a class="header-button" href="./index.php?p=login"><button>Connexion</button></a>';

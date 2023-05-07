@@ -1,15 +1,14 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_test_xml.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/update_test.php";
 $id=$_GET["id"];
 $test = get_test_xml($id); // récupérer le test depuis la base de données
 ob_start();
-
-if(count($test)>1){
 ?>
 
 <h1> Edition du test </h1>
 
-<form method="post">
+<form method="post" action="../controller/courses/update_test.php">
   <input type="hidden" name="test_id" value="<?= $id ?>">
   <div id="question-container">
   <?php
@@ -32,14 +31,12 @@ if(count($test)>1){
   }
   ?>
   </div>
-  <button onclick="addquestion()">Ajouter une question</button>
-  <input type="button" value="Enregistrer" onclick="sendData()">
+  <input type="button" value="Ajouter une question" onclick="addquestion()"/>
+  <input type="submit" value="Enregistrer">
 </form>
 
-<?= '<script src="assets/js/edittest.js"></script>' ?>
+<?= '<script src="../vue/assets/js/edittest.js"></script>' ?>
 
 <?php
-}else
-    echo '<H1>PAS DISPONIBLE</H1>';
 $content = ob_get_contents();
 ob_get_clean();

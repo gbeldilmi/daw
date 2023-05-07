@@ -17,6 +17,7 @@ function update_test($data):bool{
         test_TO_XML($data["question"],$i);
     else
         return false;
+    header('Location: index.php?p=testid=' . $i);
     return true;
 }
 

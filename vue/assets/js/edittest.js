@@ -5,13 +5,12 @@ function inittest(num) {
 }
 
 function deletequestion(qid) {
-  let dom = $("#q" + qid);
+  let dom = document.querySelector("#q" + qid);
   dom.remove();
 }
 
 function addquestion() {
-  let qcondom = $("#question-container");
-  let nq = $("#question-template").clone();
+  let qcondom = document.querySelector("#question-container");
   let nqdom = "<div class=\"question\" id=\"q" + nqnb + ">" +
   "<button onclick=\"deletequestion(" + nqnb + ")\">Supprimer</button>" +
   "<textarea id=\"q" + nqnb + "qt\" name=\"q" + nqnb + "qt\" >Question</textarea><ul>";
@@ -21,5 +20,5 @@ function addquestion() {
   }
   nqdom += "</div>";
   nqnb++;
-  qcondom.append(nqdom);
+  qcondom.innerHTML += nqdom;
 }
