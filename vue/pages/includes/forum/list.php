@@ -1,29 +1,23 @@
 <?php
-session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/controller/user/get_id.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/model/ConnectionDb.php';
+if(!isset($_SESSION))
+{
+    session_start();
+}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/controller/forum/get_forums.php';
 //print_r($_SESSION);
-$username = $_SESSION['username'];
-$user_id = get_id($username);
-echo $user_id;
-$sql = "SELECT FORUM_DISCUSSION.*,FORUM_MESSAGE.* FROM FORUM_DISCUSSION
-        INNER JOIN FOLLOWED_COURSE ON FORUM_DISCUSSION.COURSE_ID = FOLLOWED_COURSE.COURSE_ID
-        INNER JOIN FORUM_MESSAGE ON FORUM_MESSAGE.DISCUSSION_ID=FORUM_DISCUSSION.ID
-        WHERE FOLLOWED_COURSE.USER_ID = $user_id
-        ORDER BY FORUM_DISCUSSION.CREATED_AT DESC";
+$forums=get_forums();
+var_dump($forums);
 
 $title = "List";
-$conn = new ConnectionDb();
-$db = $conn->database;
-$query = $db->prepare($sql);
-$query->execute();
-
 /////////// ---> passer par les controllers pour les requêtes à la BDD
 ob_start();
-while ($row = $query->fetch()) {
+foreach ($forums as $row) {
+    echo "<p>ID FORUM: " . $row["ID"] . "</p>";
     echo "<p>Titre : " . $row["TITLE"] . "</p>";
-    echo '<br>';
     echo "<p>Date de création : " . $row["CREATED_AT"] . "</p>";
+    $script="window.location='/vue/index.php?p=forum&id=".$row["ID"]."'";
+    echo "<button onclick=$script><img src='/vue/assets/img/view.gif' width='20em' height='20em'></button>";
+    echo '<br>';
 }
 ?>
 <div class="modal">

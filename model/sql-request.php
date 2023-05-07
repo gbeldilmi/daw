@@ -65,11 +65,33 @@ function get_all_roles_username($role):array{
     $conn->closeConnection();
     return $users;
 }
-
+function get_user_model($user_id):array{
+    $conn=new ConnectionDb();
+    $db=$conn->database;
+    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME,NIVEAU,ROLE, EMAIL,CREATED_AT, USERNAME FROM USER WHERE ROLE!=3");
+    $query->execute();
+    $users=array();
+    while ($row = $query->fetch()) {
+        if($row['ID']==$user_id){
+            $a=array();
+            $a['ID']=$row['ID'];
+            $a['FIRSTNAME']=$row['FIRSTNAME'];
+            $a['LASTNAME']=$row['LASTNAME'];
+            $a['EMAIL']=$row['EMAIL'];
+            $a['USERNAME']=$row['USERNAME'];
+            $a['NIVEAU']=$row['NIVEAU'];
+            $a['ROLE']=$row['ROLE'];
+            $a['CREATED_AT']=$row['CREATED_AT'];
+            $users[]=$a;
+        }
+    }
+    $conn->closeConnection();
+    return $users;
+}
 function get_users_model():array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME,NIVEAU,ROLE, EMAIL,CREATED_AT, USERNAME,PASSWORD FROM USER WHERE ROLE!=3");
+    $query=$db->prepare("SELECT ID, FIRSTNAME, LASTNAME,NIVEAU,ROLE, EMAIL,CREATED_AT, USERNAME FROM USER WHERE ROLE!=3");
     $query->execute();
     $users=array();
     while ($row = $query->fetch()) {
@@ -317,30 +339,33 @@ function get_forum_id_model($id_forum):array{
     $forum=array();
     while ($row = $query->fetch()) {
         if ($id_forum==$row['ID']){
-            $forum[]=$row['ID'];
-            $forum[]=$row['USER_ID'];
-            $forum[]=$row['COURSE_ID'];
-            $forum[]=$row['TITLE'];
-            $forum[]=$row['CREATED_AT'];
+            $forum['ID']=$row['ID'];
+            $forum['USER_ID']=$row['USER_ID'];
+            $forum['COURSE_ID']=$row['COURSE_ID'];
+            $forum['TITLE']=$row['TITLE'];
+            $forum['CREATED_AT']=$row['CREATED_AT'];
         }
     }
     $conn->closeConnection();
     return $forum;
 }
 
-function get_forums_model():array{
+function get_forums_model($user_id):array{
     $conn=new ConnectionDb();
     $db=$conn->database;
-    $query=$db->prepare("SELECT ID, USER_ID, COURSE_ID, TITLE, CREATED_AT FROM FORUM_DISCUSSION");
+    $query=$db->prepare("SELECT DISTINCT FORUM_DISCUSSION.ID,FORUM_DISCUSSION.USER_ID,FORUM_DISCUSSION.COURSE_ID,FORUM_DISCUSSION.TITLE,FORUM_DISCUSSION.CREATED_AT FROM FORUM_DISCUSSION
+        INNER JOIN FOLLOWED_COURSE ON FORUM_DISCUSSION.COURSE_ID = FOLLOWED_COURSE.COURSE_ID
+        WHERE FOLLOWED_COURSE.USER_ID = $user_id
+        ORDER BY FORUM_DISCUSSION.CREATED_AT DESC");
     $query->execute();
     $forums=array();
     while ($row = $query->fetch()) {
         $forum=array();
-        $forum[]=$row['ID'];
-        $forum[]=$row['USER_ID'];
-        $forum[]=$row['COURSE_ID'];
-        $forum[]=$row['TITLE'];
-        $forum[]=$row['CREATED_AT'];
+        $forum["ID"]=$row['ID'];
+        $forum["USER_ID"]=$row['USER_ID'];
+        $forum["COURSE_ID"]=$row['COURSE_ID'];
+        $forum["TITLE"]=$row['TITLE'];
+        $forum["CREATED_AT"]=$row['CREATED_AT'];
         $forums[]=$forum;
     }
     $conn->closeConnection();
@@ -356,9 +381,13 @@ function get_messages_forum_model($id_forum):array{
     while ($row = $query->fetch()) {
         if ($id_forum==$row['DISCUSSION_ID']){
             $message=array();
-            $message[]=get_username_id($row['USER_ID']);
-            $message[]=$row['CONTENT'];
-            $message[]=$row['CREATED_AT'];
+            $user=array();
+            $user=array_merge($user,get_user_model($row['USER_ID']));
+            $message['USERNAME']=$user[0]['USERNAME'];
+            $message['ROLE']=$user[0]['ROLE'];
+            $message['CONTENT']=$row['CONTENT'];
+            $message['CREATED_AT']=$row['CREATED_AT'];
+            var_dump($message);
             $messages[]=$message;
         }
     }
@@ -373,3 +402,9 @@ function send_message_forum_model($id_forum,$message,$id_user):bool{
     $conn->closeConnection();
     return $query->execute();
 }
+
+
+
+/////////////////////////////////////
+///
+///
