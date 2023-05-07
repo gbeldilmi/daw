@@ -6,8 +6,9 @@ if(!isset($_SESSION))
     session_start();
 }
 require_once $_SERVER["DOCUMENT_ROOT"].'/model/sql-request.php';
+$data=get_object_vars(json_decode($_POST["data"]));
 
-echo send_message_forum($_POST["forum"],$_POST["message"]);
+echo send_message_forum($data["forumid"],$data["message"]);
 
 function send_message_forum($id_forum,$message):bool{
     $id_user=get_ID_User($_SESSION['username']);

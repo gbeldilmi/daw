@@ -379,6 +379,8 @@ function get_messages_forum_model($id_forum):array{
     $query->execute();
     $messages=array();
     while ($row = $query->fetch()) {
+//        echo "<br>ghjhj ".($id_forum)."-".($row['DISCUSSION_ID'])." hjhh<br>";
+//        var_dump($row);
         if ($id_forum==$row['DISCUSSION_ID']){
             $message=array();
             $user=array();
@@ -387,7 +389,6 @@ function get_messages_forum_model($id_forum):array{
             $message['ROLE']=$user[0]['ROLE'];
             $message['CONTENT']=$row['CONTENT'];
             $message['CREATED_AT']=$row['CREATED_AT'];
-            var_dump($message);
             $messages[]=$message;
         }
     }
