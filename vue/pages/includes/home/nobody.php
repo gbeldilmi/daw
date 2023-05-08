@@ -22,9 +22,9 @@ ob_start(); ?>
 
   .image-container {
     position: absolute;
-    top: 65%;
-    left: 63%;
-
+    top: 45%;
+    left: 68%;
+    max-height: 70%;
     transform: translate(-50%, -50%);
     z-index: 1;
 
@@ -156,7 +156,7 @@ ob_start(); ?>
   </div>
   <div class="green-square"></div>
   <div class="image-container">
-    <img src="/vue/assets/img/ImgHome.jpg" style="width:100% ; border: 1px solid black;" />
+    <img src="/vue/assets/img/ImgHome.jpg" style="width:100% ; max-height: 38rem; border: 1px solid black;" />
   </div>
 </div>
 
