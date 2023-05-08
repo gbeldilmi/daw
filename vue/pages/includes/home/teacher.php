@@ -23,6 +23,11 @@ ob_start(); ?>
     margin: 1rem;
   }
 
+  .show-courses:hover {
+    background-color: var(--color-1);
+    color: var(--color-4);
+  }
+
   #modal {
     display: none;
     position: fixed;
