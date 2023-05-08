@@ -88,6 +88,7 @@ ob_start(); ?>
   .Troiscarre {
     background-color: var(--color-4);
     width: 20rem;
+    max-width: 40rem;
     height: 10rem;
     border-radius: 3.5%;
     background-color: var(--color-2);
