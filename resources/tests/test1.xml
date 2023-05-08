@@ -1,17 +1,2 @@
 <?xml version="1.0"?>
-<test1>
-    <question>
-        <text>Qu'est ce que Python?</text>
-            <answer valid="true">un langage de prog</answer>
-            <answer valid="true">un jeu</answer>
-            <answer valid="false">une serie televise</answer>
-            <answer valid="false">un serpent</answer>
-    </question>
-    <question>
-        <text>Comment definir un titre dans le html?</text>
-            <answer valid="false">avec une balise "nav"</answer>
-            <answer valid="false">avec un #</answer>
-            <answer valid="true">avec la balise "title"</answer>
-            <answer valid="false">avec "//"</answer>
-    </question>
-</test1>
+<test1><question><text>Qu'est ce que Python?</text><answer valid="false">un langage de prog</answer><answer valid="true">un jeu</answer><answer valid="false">une serie televise</answer><answer valid="false">un serpent</answer></question><question><text>Question</text><answer valid="true">r&#xE9;ponse</answer><answer valid="true">r&#xE9;ponse</answer><answer valid="false">r&#xE9;ponse</answer><answer valid="true">r&#xE9;ponse</answer></question></test1>

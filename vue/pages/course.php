@@ -25,7 +25,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/get_id.php";
       if (is_course_owner($_GET['id'],get_id($_SESSION["username"]))) {
         require_once("includes/course/teacher/one.php");
       } else {
-        header('Location: index.php?p=404');
+//        header('Location: index.php?p=404');
       }
     }
   }

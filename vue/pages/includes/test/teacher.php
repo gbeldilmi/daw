@@ -1,9 +1,12 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_test_xml.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/update_test.php";
+//require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/update_test.php";
 $id=$_GET["id"];
 $test = get_test_xml($id); // récupérer le test depuis la base de données
+print_r($test);
+
 ob_start();
+echo "<input type='hidden' id='courseid' value='$id' >";
 ?>
 
 <style>
@@ -71,7 +74,7 @@ ob_start();
 
 <h1> Edition du test </h1>
 
-<form method="post" action="../controller/courses/update_test.php">
+<form method="post" action="">
   <input type="hidden" name="test_id" value="<?= $id ?>">
   <div id="question-container">
   <?php
@@ -96,7 +99,7 @@ ob_start();
   </div>
   <div id="botdiv">
     <input type="button" value="Ajouter une question" onclick="addquestion()"/>
-    <input type="submit" value="Enregistrer">
+    <input type="button" onclick="sendData()" value="Enregistrer">
   </div>
 </form>
 

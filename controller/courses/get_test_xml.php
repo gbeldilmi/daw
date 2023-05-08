@@ -33,6 +33,5 @@ function get_test_xml($id):array{
             'question'=>$question
         ));
     }
-//    print_r($test);
     return $test;
 }
