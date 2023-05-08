@@ -12,7 +12,7 @@ function deletequestion(qid) {
 function addquestion() {
   let qcondom = document.querySelector("#question-container");
   let nqdom = '<div class="question" id="q' + nqnb + '">' +
-  '<button type="button" onclick="deletequestion(' + nqnb + ')">Supprimer</button>' +
+  '<button type="button" onclick="deletequestion(' + nqnb + ')">&times;</button>' +
   '<textarea id="q' + nqnb + 'qt" name="q' + nqnb + 'qt" >Question</textarea><ul>';
   for (let ia = 1; ia <= 4; ia++) {
     nqdom += '<li><input id="q' + nqnb + 'a' + ia + 'v" name="q' + nqnb + 'a' + ia + 'v" type="checkbox" checked >' +

@@ -6,6 +6,69 @@ $test = get_test_xml($id); // récupérer le test depuis la base de données
 ob_start();
 ?>
 
+<style>
+  #question-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .question {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-1);
+    box-sizing: border-box;
+    margin: 0.5rem;
+    padding: 1rem;
+    padding-top: 0;
+  }
+  .question button {
+    color: var(--color-1);
+    background-color: var(--color-4);
+    position: relative;
+    left: 97%;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+  }
+  .question textarea {
+    height: 6rem;
+    color: var(--color-1);
+    background-color: var(--color-4);
+  }
+  .question ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+  }
+  .question ul li {
+    display: flex;
+    flex-direction: row;
+  }
+  .question ul li input {
+    margin: 0.3rem;
+    color: var(--color-1);
+    background-color: var(--color-4);
+  }
+  .question ul li input[type="text"] {
+    flex: 1;
+  }
+  #botdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  #botdiv input {
+    margin: 1rem;
+    padding: 1rem;
+    color: var(--color-1);
+    background-color: var(--color-4);
+  }
+</style>
+
 <h1> Edition du test </h1>
 
 <form method="post" action="../controller/courses/update_test.php">
@@ -15,7 +78,7 @@ ob_start();
   $qcount = 1;
   foreach ($test["question"] as $question) {
     echo '<div class="question" id="q' . $qcount . '">';
-    echo '<button type="button" onclick="deletequestion(' . $qcount . ')">Supprimer</button>';
+    echo '<button type="button" onclick="deletequestion(' . $qcount . ')">&times;</button>';
     echo '<textarea id="q' . $qcount . 'qt" name="q' . $qcount . 'qt" >' . $question["text"] . '</textarea><ul>';
     $acount = 0;
     foreach ($question["answer"] as $answer) {
@@ -31,8 +94,10 @@ ob_start();
   }
   ?>
   </div>
-  <input type="button" value="Ajouter une question" onclick="addquestion()"/>
-  <input type="submit" value="Enregistrer">
+  <div id="botdiv">
+    <input type="button" value="Ajouter une question" onclick="addquestion()"/>
+    <input type="submit" value="Enregistrer">
+  </div>
 </form>
 
 <?= '<script src="../vue/assets/js/edittest.js" onload="inittest(' . $qcount . ')"></script>' ?>
