@@ -56,5 +56,5 @@ function sendData(){
       console.log(response);
     }
   });
-  location.href = window.location.href;
+  // location.href = window.location.href;
 }

@@ -39,6 +39,7 @@ function test_TO_XML(array $data,$i)
 {
     $test = new SimpleXMLElement("<test$i/>");
     array_to_xml($data,$test);
+    echo $test->asXML();
 }
 function array_to_xml($data, &$test)
 {

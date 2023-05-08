@@ -3,8 +3,6 @@ require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/get_test_xml.php";
 //require_once $_SERVER['DOCUMENT_ROOT']."/controller/courses/update_test.php";
 $id=$_GET["id"];
 $test = get_test_xml($id); // récupérer le test depuis la base de données
-print_r($test);
-
 ob_start();
 echo "<input type='hidden' id='courseid' value='$id' >";
 ?>

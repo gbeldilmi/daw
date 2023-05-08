@@ -31,7 +31,7 @@ function create_course($name,array $prerequisite,$description,array $resource):b
         )));
 //        array_push($temp,$item);
     }
-        print_r($temp);print_r($resource);
+        // print_r($temp);print_r($resource);
     $resource=$temp;
     $temp=array();
     foreach ($prerequisite as $item) {
@@ -42,7 +42,7 @@ function create_course($name,array $prerequisite,$description,array $resource):b
             )));
 //        array_push($temp,$item);
     }
-    print_r($temp);print_r($prerequisite);
+    // print_r($temp);print_r($prerequisite);
     $prerequisite=$temp;
     $data=array(
         "cour" => array(

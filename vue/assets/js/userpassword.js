@@ -9,7 +9,7 @@ function validPassword(){
     const confpass=$("#confirm-password").val();
     const divpass=document.getElementById("password");
         // $("#password");
-    if(pass!=confpass)
+    if(pass!=confpass & pass.length>1 & confpass.length>1)
     {
         divpass.style.display="block";
         divpass.style.color="red";

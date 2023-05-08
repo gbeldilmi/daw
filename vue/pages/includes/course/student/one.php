@@ -9,7 +9,7 @@ $desc = get_course_desc($id); // txt
 if (!is_followed_course($id)) {
   add_to_followed_courses($id);
 }
-var_dump($course);
+// var_dump($course);
 ob_start();
 ?>
 

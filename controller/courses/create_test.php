@@ -18,7 +18,7 @@ function test_TO_XML(array $data,$i)
 {
     $test = new SimpleXMLElement("<test$i/>");
     array_to_xml($data,$test);
-    echo $test->asXML();
+    // echo $test->asXML();
 }
 function array_to_xml($data, &$test)
 {
@@ -41,7 +41,7 @@ function array_to_xml($data, &$test)
 
     if ($test->count() > 0){
         $path=$_SERVER['DOCUMENT_ROOT']."/resources/tests/".$test->getName().".xml";
-        echo $test->saveXML($path);
+        $test->saveXML($path);
     }
 
 }
