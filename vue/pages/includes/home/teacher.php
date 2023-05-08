@@ -105,29 +105,154 @@ ob_start(); ?>
     color: #000;
   }
 
+
+  form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  [type="file"] textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+
+  button[type="button"],
+  input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+    background-color: rgb(251, 133, 13);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+  }
+
+  button[type="button"]:hover,
+  input[type="submit"]:hover {
+    background-color: #000000;
+    color: white;
+  }
+
+  .resource {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+  }
+
+
+  +button {
+    background-color: rgb(251, 133, 13);
+    color: var(--color-4);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
 </style>
 
 <div>
   <a href="index.php?p=course"><button class="show-courses">Afficher mes cours</button></a>
-  <a><button id="create-course" class="show-courses">Créer un nouveau cours</button></a>
+  <!--<a><button id="create-course" class="show-courses">Créer un nouveau cours</button></a>-->
 </div>
 
-<div id="modal">
-  <form action="create_course.php" method="post">
-    <span id="close-modal">&times;</span>
-    <h1>Créer un nouveau cours</h1>
-    <label for="course-name">Nom du cours :</label>
-    <input type="text" name="course-name" id="course-name">
-    <label for="course-desc">Description du cours :</label>
-    <textarea name="course-desc" id="course-desc" rows="3" maxlength="65535"></textarea>
-    <input type="submit" value="Créer">
-  </form>
-</div>
+<h3>Création d'un nouveau cours <h3>
+    <form action="" method="post">
+      <div>
+        <label for="title">Titre du cours :</label>
+        <input type="text" name="title" id="title" required><br>
+      </div>
+      <div>
+        <label for="description">Description :</label>
+        <textarea name="description" id="description" rows="4" cols="50" required></textarea>
+        <br>
+      </div>
+      <div>
+        <label for="prerequisites">Prérequis:</label>
+        <br>
+        <input type="text" name="prerequisites" id="prerequisites"><br>
+      </div>
+      <div>
+        <button type="button" onclick="addPrerequisite()">Ajouter un prérequis</button><br>
+      </div>
+      <div>
+        <label for="resources">Ressources :</label><br>
+      </div>
+      <div id="resources-container">
+        <div class="resource">
+          <br>
+          <label for="resource-type-1">Type de ressource :</label>
+          <select name="resource-type-1" id="resource-type-1" required>
+            <option value="">Choisissez un type de ressource</option>
+            <option value="video">Vidéo</option>
+            <option value="slide">Diapositive</option>
+          </select>
+          <br>
+          <label for="resource-path-1">Chemin de la ressource :</label>
+          <input type="file" name="resource-path-1" id="resource-path-1" required><br>
+        </div>
+      </div>
+      <button type="button" onclick="addResource()">Ajouter une ressource</button><br>
+      <input type="submit" value="Créer le cours">
+    </form>
+    </div>
+    <script>
 
-<script src="vue/assets/js/createcoursemodal.js"></script>
+      let prerequisiteCount = 1;
+      let resourceCount = 1;
 
-<?php
-$content = ob_get_contents();
-ob_get_clean();
-// done
+      function addPrerequisite() {
+        prerequisiteCount++;
+        const prerequisites = document.getElementById("prerequisites");
+        const newPrerequisite = document.createElement("input");
+        newPrerequisite.type = "text";
+        newPrerequisite.name = "prerequisite-" + prerequisiteCount;
+        newPrerequisite.id = "prerequisite-" + prerequisiteCount;
+        prerequisites.parentNode.insertBefore(newPrerequisite, prerequisites.nextSibling);
+      }
 
+      function addResource() {
+        resourceCount++;
+        const container = document.getElementById("resources-container");
+        const newResource = document.createElement("div");
+        newResource.className = "resource";
+        newResource.innerHTML = `
+        <label for="resource-type-${resourceCount}">Type de ressource :</label>
+        <select name="resource-type-${resourceCount}" id="resource-type-${resourceCount}" required>
+          <option value="">Choisissez un type de ressource</option>
+          <option value="video">Vidéo</option>
+          <option value="slide">Diapositive</option>
+        </select>
+        <br>
+        <label for="resource-path-${resourceCount}">Chemin de la ressource :</label>
+        <input type="file" name="resource-path-${resourceCount}" id="resource-path-${resourceCount}" required><br>
+      `;
+        container.appendChild(newResource);
+      }
+    </script>
+    <?php
+    $content = ob_get_contents();
+    ob_get_clean();
+    // done
+    
