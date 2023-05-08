@@ -1,5 +1,4 @@
 <?php
-
 require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_connected.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/controller/user/is_student.php";
 if (is_connected()) {header('Location: index.php?p=home');}
@@ -8,121 +7,122 @@ ob_start();
 ?>
 
 
-    <style>
-        #divprincipale
-        {
-            display: flex;
+<style>
+    .divprincipale {
+        display: flex;
+    }
 
-        }
-        #divimage
-        {
-            flex:1;
-            background-color: #D3D3D3;
+    .divimage {
+        flex: 1;
+        background-color: var(--color-2);
+    }
 
-        }
-        #divimage > img
-        {
-            width: 100%;
-            height: 30em;
+    .divimage>img {
+        width: 100%;
+        height: 30em;
+    }
 
-        }
-        #div
-        {
-            flex: 1;
-            background-color: #D3D3D3;
-        }
+    .div {
+        flex: 1;
+        background-color: var(--color-2);
+    }
 
-        #divform
-        {
-            background-color: #FFFFFF;
-            width:80%;
-            margin: 45px auto;
-            margin-top: -20px;
-        }
-        #txttitre
-        {
-            text-align: center;
-            font-family: "sans-serif";
-            margin-top: 50px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-left: 8px;
-            margin-top: 5px;
-        }
+    .divform {
+        background-color: var(--color-4);
+        width: 80%;
+        margin: 45px auto;
+        margin-top: -20px;
+    }
 
-        label {
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
+    .txttitre {
+        text-align: center;
+        font-family: "sans-serif";
+        margin-top: 50px;
+    }
 
-        input[type="text"],
-        input[type="password"] {
-            padding: 10px;
-            margin-left: 5px;
-            border: none;
-            margin-bottom: 20px;
-            width: 90%;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            background-color: #D3D3D3;
-        }
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
+        margin-top: 5px;
+    }
 
-        input[type="submit"] {
-            background-color: #000000;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin-left: 5px;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            width: 90%;
-        }
+    label {
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
 
-        input[type="submit"]:hover {
-            background-color: rgb(251, 133, 13);
-        }
-        #lienbas
-        {
-            color: grey;
-            text-decoration: none;
+    input[type="text"],
+    input[type="password"] {
+        padding: 10px;
+        margin-left: 5px;
+        border: none;
+        margin-bottom: 20px;
+        width: 90%;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        background-color: var(--color-2);
+        color: var(--color-1);
+    }
 
-            font-family: Arial, sans-serif;
-            cursor: pointer;
-        }
-        #txt
-        {
-            text-align: center;
-        }
-    </style>
+    input[type="submit"] {
+        background-color: var(--color-1);
+        color: var(--color-4);
+        border: none;
+        padding: 10px;
+        margin-left: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        width: 90%;
+    }
 
-    <div id="divprincipale">
-        <div id="divimage">
-            <img src="/vue/assets/img/imglogindeux.jpg" alt="Image" style="width: 100%; object-fit: cover;">
-        </div>
-        <div id="div">
-            <h2 id="txttitre">Connexion<br><br></h2>
-            <div id="divform">
-                <form id="login" action="../../controller/user/login.php" method="post">
-                    <label for="l_username">Nom d'utilisateur*<br></label>
-                    <input type="text" name="l_username" id="l_username" required placeholder="Entrer votre nom d'utilisateur">
-                    <label for="l_password">Mot de passe*</label>
-                    <input type="password" name="l_password" id="l_password" required placeholder="Entrer votre mot de passe">
-                    <input type="submit" value="Login">
-                </form>
+    input[type="submit"]:hover {
+        background-color: var(--color-3);
+    }
 
-            </div>
-            <p id="txt"> <a href="register.php"  id="lienbas">Mot de passe oublié ?</a></p>
+    .lienbas {
+        color: var(--color-5);
+        text-decoration: none;
 
-            <p id="txt"> <a href="http://localhost/vue/index.php?p=register"  id="lienbas">Vous n'avez pas de compte ?</a></p>
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+    }
 
-        </div>
+    .txt {
+        text-align: center;
+    }
+
+</style>
+
+<div class="divprincipale">
+    <div class="divimage">
+        <img src="/vue/assets/img/imglogindeux.jpg" alt="Image" style="width:100%; object-fit: cover;">
     </div>
+    <div class="div">
+        <h2 class="txttitre">Connexion<br><br></h2>
+        <div class="divform">
+            <form class="login" action="../../controller/user/login.php" method="post">
+                <label for="l_username">Nom d'utilisateur*<br></label>
+                <input type="text" name="l_username" id="l_username" required
+                    placeholder="Entrer votre nom d'utilisateur">
+                <label for="l_password">Mot de passe*</label>
+                <input type="password" name="l_password" id="l_password" required
+                    placeholder="Entrer votre mot de passe">
+                <input type="submit" value="Login">
+            </form>
+
+        </div>
+        <p class="txt"> <a href="register.php" id="lienbas">Mot de passe oublié ?</a></p>
+
+        <p class="txt"> <a href="http://localhost/vue/index.php?p=register" id="lienbas">Vous n'avez pas de compte ?</a>
+        </p>
+
+    </div>
+</div>
 
 
 <!---->
@@ -155,7 +155,7 @@ ob_start();
 <!--        <input type="submit" value="Register">-->
 <!--    </form>-->
 
-    <!--
+<!--
       TODO:
         - Ajouter les interactions avec le serveur
         - Ajouter l'UI/UX pour afficher le formulaire d'enregistrement dans un modal au clic sur le bouton "Créer un nouveau compte"
